@@ -33,9 +33,25 @@ public class AdminAccount extends User{
     //addUser()
     //removeUser()
        
+    public void addItem( String name, double price, int orderQuantity, int stock, Supplier theSupplier, String supplier,
+            String expirationDate, String itemDescription )
+    {
+        Item create = new Item( name, price, orderQuantity, stock, theSupplier, supplier, expirationDate, itemDescription );
+        Item.addItem( create );
+    }
     
+    public void removeItem( String name )
+    {
+        if( !Item.removeItem( name ) ) // If removeItem() returns false ( item DNE )
+        {
+            // GUI stuff telling admin item did not exist, try again
+        }
+    }
     
-    
+    public void changePrice( Item target, double input ) // target is specified from the GUI
+    {
+        target.changePrice( input );
+    }
     
     
     public String getEmployeeID() {
