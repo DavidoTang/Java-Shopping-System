@@ -12,7 +12,10 @@ public class ContactInfo {
         this.phoneNumber = phoneNumber;
     }
     
-    
+    public ContactInfo() {
+        this.emailAddress = "";
+        this.phoneNumber = "";
+    }
     
     /**
      * @return the emailAddress
