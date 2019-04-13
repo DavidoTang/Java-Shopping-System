@@ -8,6 +8,9 @@
  *
  * @author Dave
  */
+
+import java.util.ArrayList;
+
 public class CNIT255Final extends javax.swing.JFrame {
 
     /**
@@ -51,6 +54,9 @@ public class CNIT255Final extends javax.swing.JFrame {
         System.out.println("hi guys...");
         System.out.println("does this still work?");
         System.out.println("Changes are being saved...");
+        
+        // Initialization of Item ArrayList
+        ArrayList< Item > itemList = new ArrayList< Item >();
         
         
         
