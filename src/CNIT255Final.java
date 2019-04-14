@@ -1,23 +1,47 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
  *
  * @author Dave
  */
 
 import java.util.ArrayList;
-
+import javax.swing.DefaultListModel;
 public class CNIT255Final extends javax.swing.JFrame {
 
+    
+    
+    
+    
+  //  String firstName, String lastName, String accountCreationDate, Address addr, ContactInfo contact, 
+   //         LoginCredentials loginCreds, String joinDate, String birthDate
+    
+    
+   // String address, String city, String state, String country, String zipcode
+    
+    
+    private static CustomerAccount currentCustomer = new CustomerAccount("David", "Tang", "4/14/19", (new Address("1342 Manicott Dr", "New Yourk", "New York", "USA", "23232")), (new ContactInfo("david@gmail.com", "434343443")), (new LoginCredentials()), "22", "22");
+    
+    private static ArrayList< Item > itemStockList = new ArrayList<>();         //Holds the list of items we offer
+    private static ArrayList<Supplier> supplierList = new ArrayList<>();        //Holds the list of suppliers
+    private static ArrayList<Category> categoryList = new ArrayList<>();        //Holds the list of categories
+    //private static 
+    
     /**
      * Creates new form CNIT255Final
      */
     public CNIT255Final() {
         initComponents();
+        
+        
+        //Lists all of our products in the jList.  jList's variable is called ProductList
+        DefaultListModel productModel = new DefaultListModel();
+        for (int i=0; i<itemStockList.size(); i++) {
+            productModel.addElement(itemStockList.get(i).getName());
+        }
+        ProductList.setModel(productModel);
+
+        
+        
+        
     }
 
     /**
@@ -30,45 +54,122 @@ public class CNIT255Final extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        ProductList = new javax.swing.JList<>();
+        addToCart = new javax.swing.JButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("Testerino");
+
+        ProductList.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane1.setViewportView(ProductList);
+
+        addToCart.setText("Add to Cart");
+        addToCart.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addToCartActionPerformed(evt);
+            }
+        });
+
+        jMenu1.setText("File");
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Edit");
+        jMenuBar1.add(jMenu2);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(139, 139, 139)
+                .addGap(24, 24, 24)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(addToCart)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(105, 105, 105)
                 .addComponent(jLabel1)
-                .addContainerGap(216, Short.MAX_VALUE))
+                .addContainerGap(117, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(56, 56, 56)
-                .addComponent(jLabel1)
-                .addContainerGap(230, Short.MAX_VALUE))
+                .addGap(35, 35, 35)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(addToCart)
+                .addGap(27, 27, 27))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void addToCartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addToCartActionPerformed
+        //Adds the currently selected jList item into the 'currentCustomer's shopping cart
+        
+        String target = ProductList.getSelectedValue();
+
+        for( int i = 0; i < itemStockList.size(); i++ )
+        {
+            Item test = itemStockList.get( i );
+            String checkName = test.getName();
+            
+            if( checkName.equals( target ))
+            {
+                System.out.println("Found " + target);
+                currentCustomer.getShoppingcart().addItemToCart( (new ItemOrder(test.getName(), test.getPrice(), test.getTheSupplier(),
+                                                                    test.getExpirationDate(), test.getItemDescription(), test.getMyCategory(), 
+                                                                    5)) );      //5 is the placeholder for ordernumber.
+                //System.out.println("Added: " + currentCustomer.getShoppingcart().getCart().get(0).getName());
+                
+                System.out.println("Items in Cart:");
+                for(ItemOrder a : currentCustomer.getShoppingcart().getCart()) {
+                    System.out.println(a.getName());
+                }
+                
+                
+                
+                return;
+            }
+        }
+        
+        
+    }//GEN-LAST:event_addToCartActionPerformed
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
+
 
         System.out.println("hi guys...");
-        System.out.println("does this still work?");
-        System.out.println("Changes are being saved...");
         
-        // Initialization of Item ArrayList
-        ArrayList< Item > itemList = new ArrayList< Item >();
+        //Initalizing Categories
+        categoryList.add(new Category("Electronics", "All things electronics"));
+        categoryList.add(new Category("Food", "Items which can be consumed"));
+        
+        //Initalizing Suppliers
+        supplierList.add(new Supplier("FastFit", "Ben Wagrez", (new SupplierContactInfo("fastfit@fastfit.org", "4042728293", 
+        "12233312", "benwagrez@fastfit.org", "7048217332", "www.fastfit.org")) ));
         
         
+        //Initalize some Items
+        itemStockList.add(new ItemStock("Raspberry Pi", 35.00, supplierList.get(0), "N/A", "A tiny computer", categoryList.get(0) ,15));
+        itemStockList.add(new ItemStock("David's Sanity", 3301.00, supplierList.get(0), "4/16/19", "The quickly fading entity of David's Sanity", categoryList.get(1), 1));
+
         
         
         
@@ -85,8 +186,19 @@ public class CNIT255Final extends javax.swing.JFrame {
             }
         });
     }
+    
+    public void addItem(Item addedItem) {
+        itemStockList.add(addedItem);
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JList<String> ProductList;
+    private javax.swing.JButton addToCart;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

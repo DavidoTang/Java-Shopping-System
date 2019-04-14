@@ -14,18 +14,14 @@ public class SupplierContactInfo extends ContactInfo {
     private String fax;
     private String ceoEmail;
     private String ceoPhone;
-    private String primaryContactEmail;
-    private String primaryContactPhone;
     private String businessWebsite;
     
     public SupplierContactInfo(String emailAddress, String phoneNumber, String fax, String ceoEmail,
-            String ceoPhone, String primaryContactEmail, String primaryContactPhone, String businessWebsite) {
+            String ceoPhone, String businessWebsite) {
         super(emailAddress, phoneNumber);
         this.fax = fax;
         this.ceoEmail = ceoEmail;
         this.ceoPhone = ceoPhone;
-        this.primaryContactEmail = primaryContactEmail;
-        this.primaryContactPhone = primaryContactPhone;
         this.businessWebsite = businessWebsite;
         
     }
@@ -36,8 +32,6 @@ public class SupplierContactInfo extends ContactInfo {
         this.fax = "";
         this.ceoEmail = "";
         this.ceoPhone = "";
-        this.primaryContactEmail = "";
-        this.primaryContactPhone = "";
         this.businessWebsite = "";
     }
     
@@ -64,22 +58,6 @@ public class SupplierContactInfo extends ContactInfo {
 
     public void setCeoPhone(String ceoPhone) {
         this.ceoPhone = ceoPhone;
-    }
-
-    public String getPrimaryContactEmail() {
-        return primaryContactEmail;
-    }
-
-    public void setPrimaryContactEmail(String primaryContactEmail) {
-        this.primaryContactEmail = primaryContactEmail;
-    }
-
-    public String getPrimaryContactPhone() {
-        return primaryContactPhone;
-    }
-
-    public void setPrimaryContactPhone(String primaryContactPhone) {
-        this.primaryContactPhone = primaryContactPhone;
     }
 
     public String getBusinessWebsite() {
