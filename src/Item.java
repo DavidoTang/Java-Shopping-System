@@ -2,6 +2,8 @@
  *
  * @author Dave
  */
+import java.util.ArrayList;
+
 public class Item {
     
     private String name;
@@ -11,6 +13,8 @@ public class Item {
     private Supplier theSupplier;
     private String expirationDate;
     private String itemDescription;
+    
+    private static ArrayList< Item > itemList = new ArrayList< Item >(); // Where to store the list of item objects
     
     public Item(String name, double price, int orderQuantity, int stock, Supplier theSupplier, String supplier,
             String expirationDate, String itemDescription) {
@@ -33,6 +37,26 @@ public class Item {
         this.theSupplier = null;
         this.expirationDate = "";
         this.itemDescription = "";
+    }
+    
+    public static void addItem( Item input ) // Requires already made Item objects as inputs
+    {
+        itemList.add( input );
+    }
+    
+    public static boolean removeItem( String name ) // Search for item, then remove is it exists
+    {                                               // True = item was found and removed, false = item DNE
+        for( int i = 0; i < itemList.size(); i++ )
+        {
+            if( name.equals( itemList.get( i ).getName() ) )
+            {
+                itemList.remove( i );
+                
+                return true;
+            }
+        }
+        
+        return false;
     }
 
     public String getName() {
