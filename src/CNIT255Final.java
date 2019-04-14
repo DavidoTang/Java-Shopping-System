@@ -26,6 +26,8 @@ public class CNIT255Final extends javax.swing.JFrame {
     private static ArrayList<Category> categoryList = new ArrayList<>();        //Holds the list of categories
     
     private static DefaultListModel cartModel = new DefaultListModel();
+    
+    private static double cartTotal = 0.0;
     //private static 
     
     /**
@@ -190,6 +192,11 @@ public class CNIT255Final extends javax.swing.JFrame {
                 
                 // Change the cart list to reflect current cart changes
                 cartModel.addElement( test.getName() );
+                
+                // Calculate new total cart price
+                String cartPrice = cartTotalText.getText().substring( 1 );
+                double newCartPrice = test.getPrice() + Double.parseDouble( cartPrice );
+                cartTotalText.setText( "$" + Double.toString( newCartPrice ) );
                 
                 return;
             }
