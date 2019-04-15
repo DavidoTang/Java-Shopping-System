@@ -43,6 +43,9 @@ public class CNIT255Final extends javax.swing.JFrame {
         }
         ProductList.setModel(productModel);
         
+        refreshLists();
+        
+        
         DefaultListModel supplierModel = new DefaultListModel();
         for (int i=0; i<supplierList.size(); i++) {
             supplierModel.addElement(supplierList.get(i).getCompanyName());
