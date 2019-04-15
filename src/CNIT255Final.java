@@ -11,19 +11,12 @@ import javax.swing.JOptionPane;
 public class CNIT255Final extends javax.swing.JFrame {
 
     
-    
-    
-    
-  //  String firstName, String lastName, String accountCreationDate, Address addr, ContactInfo contact, 
-   //         LoginCredentials loginCreds, String joinDate, String birthDate
-    
-    
-   // String address, String city, String state, String country, String zipcode
+
     
     
     private static CustomerAccount currentCustomer = new CustomerAccount("David", "Tang", "4/14/19", (new Address("1342 Manicott Dr", "New Yourk", "New York", "USA", "23232")), (new ContactInfo("david@gmail.com", "434343443")), (new LoginCredentials()), "22", "22");
     
-    private static ArrayList< Item > itemStockList = new ArrayList<>();         //Holds the list of items we offer
+    private static ArrayList< ItemStock > itemStockList = new ArrayList<>();         //Holds the list of items we offer
     private static ArrayList<Supplier> supplierList = new ArrayList<>();        //Holds the list of suppliers
     private static ArrayList<Category> categoryList = new ArrayList<>();        //Holds the list of categories
     private static ArrayList< Item > cartList = new ArrayList< Item >();        //Holds the list of items in the customer's cart
@@ -39,16 +32,8 @@ public class CNIT255Final extends javax.swing.JFrame {
     public CNIT255Final() {
         initComponents();
         
-        
-        //Lists all of our products in the jList.  jList's variable is called ProductList
-        DefaultListModel productModel = new DefaultListModel();
-        for (int i=0; i<itemStockList.size(); i++) {
-            productModel.addElement(itemStockList.get(i).getName());
-        }
-        ProductList.setModel(productModel);
-
-        // Initialize cart JList
-        cartJList.setModel( cartModel );        
+        refreshLists();
+             
     }
 
     /**
@@ -70,6 +55,10 @@ public class CNIT255Final extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         cartJList = new javax.swing.JList<>();
         clearCartButton = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        productQuantityList = new javax.swing.JList<>();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -81,6 +70,7 @@ public class CNIT255Final extends javax.swing.JFrame {
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
+        ProductList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         ProductList.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 ProductListMouseClicked(evt);
@@ -124,6 +114,17 @@ public class CNIT255Final extends javax.swing.JFrame {
             }
         });
 
+        productQuantityList.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = {  };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane2.setViewportView(productQuantityList);
+
+        jLabel3.setText("Products:");
+
+        jLabel4.setText("Qnt:");
+
         jMenu1.setText("File");
 
         jMenuItem1.setText("Exit");
@@ -143,41 +144,53 @@ public class CNIT255Final extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(addToCart)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(44, 44, 44)
+                        .addComponent(addToCart)
+                        .addGap(30, 30, 30)
                         .addComponent(clearCartButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(purchaseCartButton))
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
-                        .addComponent(cartTotalText, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(13, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(37, 37, 37)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(cartTotalText, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(16, 16, 16)
-                .addComponent(jLabel1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
                             .addComponent(cartTotalText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addToCart)
@@ -196,26 +209,40 @@ public class CNIT255Final extends javax.swing.JFrame {
 
         for( int i = 0; i < itemStockList.size(); i++ )
         {
-            Item test = itemStockList.get( i );
+            ItemStock test = itemStockList.get( i );
             String checkName = test.getName();
             
             if( checkName.equals( target ))
             {
+                //Checks to see if there is enough stock
+                if(test.getStock() < 1) {
+                    JOptionPane.showMessageDialog(this, "Item is out of stock!", "Item Out of Stock", JOptionPane.ERROR_MESSAGE);
+                    break;
+                }
+                
                 System.out.println("Found " + target);
-                currentCustomer.getShoppingcart().addItemToCart( (new ItemOrder(test.getName(), test.getPrice(), test.getTheSupplier(),
-                                                                    test.getExpirationDate(), test.getItemDescription(), test.getMyCategory(), 
-                                                                    5)) );      //5 is the placeholder for ordernumber.
+       
+                //                (No longer Relivent, using cartList ArrayList)
+                
+//                 currentCustomer.getShoppingcart().addItemToCart( (new ItemOrder(test.getIndex(), test.getName(), test.getPrice(), test.getTheSupplier(),
+//                                                                    test.getExpirationDate(), test.getItemDescription(), test.getMyCategory(), 
+//                                                                    5)) );      //5 is the placeholder for ordernumber.
+                
                 //System.out.println("Added: " + currentCustomer.getShoppingcart().getCart().get(0).getName());
                 /*
                 System.out.println("Items in Cart:");
                 for(ItemOrder a : currentCustomer.getShoppingcart().getCart()) {
                     System.out.println(a.getName());
                 }*/
-                
+
                 // Change the cart list to reflect current cart changes
                 cartModel.addElement( test.getName() );
-                cartList.add( new Item( test.getName(), test.getPrice(), test.getTheSupplier(),
+                cartList.add( new Item(test.getIndex(), test.getName(), test.getPrice(), test.getTheSupplier(), //????~~
                         test.getExpirationDate(), test.getItemDescription(), test.getMyCategory() ));
+                
+                //Decreasing Stock
+                itemStockList.get(i).setStock( (itemStockList.get(i).getStock() - 1) );
+                
                 
                 // Calculate new total cart price
                 String cartPrice = cartTotalText.getText().substring( 1 );
@@ -223,6 +250,8 @@ public class CNIT255Final extends javax.swing.JFrame {
                 cartTotalText.setText( "$" + Double.toString( newCartPrice ) );
                 
                 cartTotal = newCartPrice;
+                
+                refreshLists();
                 
                 return;
             }
@@ -248,15 +277,29 @@ public class CNIT255Final extends javax.swing.JFrame {
         if( response == JOptionPane.YES_OPTION )
         {
           System.out.println("Yes button clicked");
+          System.out.println("Cart size: " + cartList.size());
+
           
-          for( int i = 0; i < cartList.size(); i++ )
-          {
-              cartList.remove( i );
-          }
-          
-          cartModel.removeAllElements();
-          cartTotalText.setText( "$0.0" );
-          cartTotal = 0;
+            int cartSize = cartList.size();
+            for( int i = cartSize - 1; i >= 0; i-- )
+            {
+                System.out.println("cartList.size(): " + cartList.size());
+                System.out.println("Loop #: " + i);
+                
+                //removing 1 from the stock
+                //int currentStock = itemStockList.get( (cartList.get(i).getIndex()) ).getStock();
+                //itemStockList.get( (cartList.get(i).getIndex()) ).setStock(currentStock - 1);
+
+                cartList.remove(i);
+            }
+            //cartList = null;
+            refreshLists();
+
+            cartModel.removeAllElements();
+            cartTotalText.setText( "$0.0" );
+            cartTotal = 0;
+
+            System.out.println("Cart Size at end: " + cartList.size());
         }
     }//GEN-LAST:event_purchaseCartButtonActionPerformed
 
@@ -265,9 +308,18 @@ public class CNIT255Final extends javax.swing.JFrame {
         cartTotalText.setText( "$0.0" );
         cartTotal = 0;
         
-        for( int i = 0; i < cartList.size(); i++ )
+        for( int i = cartList.size() - 1; i >= 0; i-- )
         {
+            
+            //Adding items back into inventory 
+            int currentStock = itemStockList.get( (cartList.get(i).getIndex()) ).getStock();
+            itemStockList.get( (cartList.get(i).getIndex()) ).setStock(currentStock + 1);
+            
+            //removing item from cart
             cartList.remove( i );
+            
+            System.out.println("Cart size: " + cartList.size());
+            refreshLists();
         }
     }//GEN-LAST:event_clearCartButtonActionPerformed
 //>>>>>>> f6fd454d58f70e91d010e606fc7621c6127879fe
@@ -293,9 +345,9 @@ public class CNIT255Final extends javax.swing.JFrame {
         
         
         //Initalize some Items
-        itemStockList.add(new ItemStock("Raspberry Pi", 35.00, supplierList.get(0), "N/A", "A tiny computer", categoryList.get(0) ,15));
-        itemStockList.add(new ItemStock("David's Sanity", 3301.00, supplierList.get(0), "4/16/19", "The quickly fading entity of David's Sanity", categoryList.get(1), 1));
-
+        itemStockList.add(new ItemStock(0,"Raspberry Pi", 35.00, supplierList.get(0), "N/A", "A tiny computer", categoryList.get(0) ,15));
+        itemStockList.add(new ItemStock(1,"David's Sanityyyyy", 3301.00, supplierList.get(0), "4/16/19", "The quickly fading entity of David's Sanity", categoryList.get(1), 1));
+        //itemStockList.add(e)
         
         
         
@@ -313,9 +365,22 @@ public class CNIT255Final extends javax.swing.JFrame {
         });
     }
     
-    public void addItem(Item addedItem) {
-        itemStockList.add(addedItem);
+    public void refreshLists() {
+        
+        DefaultListModel productModel = new DefaultListModel();
+        DefaultListModel productQuantModel = new DefaultListModel();
+        for (int i=0; i<itemStockList.size(); i++) {
+            productModel.addElement(itemStockList.get(i).getName());
+            productQuantModel.addElement(itemStockList.get(i).getStock());
+        }
+        ProductList.setModel(productModel);
+        productQuantityList.setModel(productQuantModel);
+        
+        // Initialize cart JList
+        cartJList.setModel( cartModel );      
+        
     }
+
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -326,11 +391,15 @@ public class CNIT255Final extends javax.swing.JFrame {
     private javax.swing.JButton clearCartButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JList<String> productQuantityList;
     private javax.swing.JButton purchaseCartButton;
     // End of variables declaration//GEN-END:variables
 }

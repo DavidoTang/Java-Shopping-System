@@ -5,10 +5,10 @@ public class ItemStock extends Item {
     
     private int stock;
     
-    public ItemStock(String name, double price, Supplier theSupplier,
+    public ItemStock(int index, String name, double price, Supplier theSupplier,
             String expirationDate, String itemDescription, Category myCategory, int stock) {
         
-        super(name, price, theSupplier, expirationDate, itemDescription, myCategory);
+        super(index, name, price, theSupplier, expirationDate, itemDescription, myCategory);
         this.stock = stock;  
     }
     
