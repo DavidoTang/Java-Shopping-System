@@ -411,10 +411,6 @@ public class CNIT255Final extends javax.swing.JFrame {
         itemStockList.add(new ItemStock(18, "Jurassic World: Evolution", 44.99, supplierList.get(1), "N/A", "", categoryList.get(2), 800));
         itemStockList.add(new ItemStock(19, "PlayerUnknown’s Battlegrounds", 29.99, supplierList.get(1), "N/A", "", categoryList.get(2), 700));
 
-        
-
-        //int index, String name, double price, Supplier theSupplier,
-            //String expirationDate, String itemDescription, Category myCategory
         //itemStockList.add(e)
 
 
