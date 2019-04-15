@@ -16,8 +16,12 @@ public class LoginCredentials {
     
     public LoginCredentials(String username, String pass, ArrayList<SecurityQuestion> securityQuestions) throws NoSuchAlgorithmException {
         this.username = username;
-        this.pass = sha256Hash(pass);
+        setPass(pass);
         this.securityQuestions = securityQuestions;
+    }
+    public LoginCredentials(String username, String pass) throws NoSuchAlgorithmException {
+        this.username = username;
+        setPass(pass);
     }
     public LoginCredentials() {
         securityQuestions = null;
@@ -38,6 +42,12 @@ public class LoginCredentials {
     public void setUsername(String username) {
         this.username = username;
     }
+    
+    public String getPass()
+    {
+        return pass;        //Returns a hashed password
+    }
+    
 
     /**
      *********************** Commented out because outside classes don't need to know the password... @Dave

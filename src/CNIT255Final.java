@@ -21,7 +21,8 @@ public class CNIT255Final extends javax.swing.JFrame {
    // String address, String city, String state, String country, String zipcode
     
     
-    private static CustomerAccount currentCustomer = new CustomerAccount("David", "Tang", "4/14/19", (new Address("1342 Manicott Dr", "New Yourk", "New York", "USA", "23232")), (new ContactInfo("david@gmail.com", "434343443")), (new LoginCredentials()), "22", "22");
+    private static CustomerAccount currentCustomer = new CustomerAccount("David", "Tang", "4/14/19", (new Address("1342 Manicott Dr", "New Yourk", "New York", "USA", "23232")), (new ContactInfo("david@gmail.com", "4315581459")), (new LoginCredentials()), "22", "22");
+    private static AdminAccount adminProfile = new AdminAccount("Joe", "Smith", "7/22/16", (new Address("8173 S. Rockland Ave.", "Downers Grove", "Illinois", "USA", "60515")), (new ContactInfo("joesmith@business.com", "6302564410")), (new LoginCredentials()), "A0001", "3/5/13");
     
     private static ArrayList< Item > itemStockList = new ArrayList<>();         //Holds the list of items we offer
     private static ArrayList<Supplier> supplierList = new ArrayList<>();        //Holds the list of suppliers
@@ -60,6 +61,11 @@ public class CNIT255Final extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jDialogAdminPanel = new javax.swing.JDialog();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jPasswordField1 = new javax.swing.JPasswordField();
         jScrollPane1 = new javax.swing.JScrollPane();
         ProductList = new javax.swing.JList<>();
         addToCart = new javax.swing.JButton();
@@ -73,6 +79,48 @@ public class CNIT255Final extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItemAdminPanel = new javax.swing.JMenuItem();
+
+        jDialogAdminPanel.setMinimumSize(new java.awt.Dimension(400, 300));
+
+        jLabel3.setText("Username");
+
+        jLabel4.setText("Password");
+
+        jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jPasswordField1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jDialogAdminPanelLayout = new javax.swing.GroupLayout(jDialogAdminPanel.getContentPane());
+        jDialogAdminPanel.getContentPane().setLayout(jDialogAdminPanelLayout);
+        jDialogAdminPanelLayout.setHorizontalGroup(
+            jDialogAdminPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDialogAdminPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jDialogAdminPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jDialogAdminPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(221, Short.MAX_VALUE))
+        );
+        jDialogAdminPanelLayout.setVerticalGroup(
+            jDialogAdminPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDialogAdminPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jDialogAdminPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jDialogAdminPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(238, Short.MAX_VALUE))
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -133,6 +181,14 @@ public class CNIT255Final extends javax.swing.JFrame {
             }
         });
         jMenu1.add(jMenuItem1);
+
+        jMenuItemAdminPanel.setText("Admin Panel");
+        jMenuItemAdminPanel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemAdminPanelActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItemAdminPanel);
 
         jMenuBar1.add(jMenu1);
 
@@ -271,6 +327,14 @@ public class CNIT255Final extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_clearCartButtonActionPerformed
 
+    private void jMenuItemAdminPanelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAdminPanelActionPerformed
+        jDialogAdminPanel.setVisible(true);
+    }//GEN-LAST:event_jMenuItemAdminPanelActionPerformed
+
+    private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPasswordField1ActionPerformed
+
     
     /**
      * @param args the command line arguments
@@ -324,13 +388,19 @@ public class CNIT255Final extends javax.swing.JFrame {
     private javax.swing.JList<String> cartJList;
     private javax.swing.JTextField cartTotalText;
     private javax.swing.JButton clearCartButton;
+    private javax.swing.JDialog jDialogAdminPanel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItemAdminPanel;
+    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JButton purchaseCartButton;
     // End of variables declaration//GEN-END:variables
 }
