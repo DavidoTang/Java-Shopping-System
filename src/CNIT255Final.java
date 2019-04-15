@@ -390,15 +390,31 @@ public class CNIT255Final extends javax.swing.JFrame {
         //Initalizing Categories
         categoryList.add(new Category("Electronics", "All things electronics"));
         categoryList.add(new Category("Food", "Items which can be consumed"));
-
+        categoryList.add(new Category("Games", "The hottest games for all platforms"));
         //Initalizing Suppliers
         supplierList.add(new Supplier("FastFit", "Ben Wagrez", (new SupplierContactInfo("fastfit@fastfit.org", "4042728293",
         "12233312", "benwagrez@fastfit.org", "7048217332", "www.fastfit.org")) ));
+        supplierList.add(new Supplier("BongoCo", "Bongo Man", (new SupplierContactInfo("bongo@bongoco.com", "8085038020", "58726184", "bongoman@bongoco.com", "9498187115", "www.bongoco.com"))));
 
 
         //Initalize some Items
         itemStockList.add(new ItemStock(0,"Raspberry Pi", 35.00, supplierList.get(0), "N/A", "A tiny computer", categoryList.get(0) ,15));
-        itemStockList.add(new ItemStock(1,"David's Sanityyyyy", 3301.00, supplierList.get(0), "4/16/19", "The quickly fading entity of David's Sanity", categoryList.get(1), 1));
+        itemStockList.add(new ItemStock(5,"David's Sanityyyyy", 3301.00, supplierList.get(0), "4/16/19", "The quickly fading entity of David's Sanity", categoryList.get(1), 1));
+        itemStockList.add(new ItemStock(10, "Tom Clancy's Rainbow Six: Siege", 19.99, supplierList.get(1), "N/A", "", categoryList.get(2), 500));
+        itemStockList.add(new ItemStock(11, "Sid Meier’s Civilization VI", 59.99, supplierList.get(1), "N/A", "", categoryList.get(2), 700));
+        itemStockList.add(new ItemStock(12, "Rocket League", 19.99, supplierList.get(1), "N/A", "", categoryList.get(2), 400));
+        itemStockList.add(new ItemStock(13, "Far Cry 5", 59.99, supplierList.get(1), "N/A", "", categoryList.get(2), 700));
+        itemStockList.add(new ItemStock(14, "Grand Theft Auto V", 29.99, supplierList.get(1), "N/A", "", categoryList.get(2), 200));
+        itemStockList.add(new ItemStock(15, "Warframe", 0.00, supplierList.get(1), "N/A", "", categoryList.get(2), 1000));
+        itemStockList.add(new ItemStock(16, "Kingdon Come: Deliverance", 39.99, supplierList.get(1), "N/A", "", categoryList.get(2), 1500));
+        itemStockList.add(new ItemStock(17, "Counter-Strike: Global Offensive", 14.99, supplierList.get(1), "N/A", "", categoryList.get(2), 600));
+        itemStockList.add(new ItemStock(18, "Jurassic World: Evolution", 44.99, supplierList.get(1), "N/A", "", categoryList.get(2), 800));
+        itemStockList.add(new ItemStock(19, "PlayerUnknown’s Battlegrounds", 29.99, supplierList.get(1), "N/A", "", categoryList.get(2), 700));
+
+        
+
+        //int index, String name, double price, Supplier theSupplier,
+            //String expirationDate, String itemDescription, Category myCategory
         //itemStockList.add(e)
 
 
