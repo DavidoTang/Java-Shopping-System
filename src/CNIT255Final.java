@@ -241,7 +241,7 @@ public class CNIT255Final extends javax.swing.JFrame {
                     .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel13)
                     .addComponent(jButtonAddItem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(93, Short.MAX_VALUE))
+                .addContainerGap(72, Short.MAX_VALUE))
         );
         jDialogAdminPanelLayout.setVerticalGroup(
             jDialogAdminPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -559,6 +559,25 @@ public class CNIT255Final extends javax.swing.JFrame {
 
     private void jMenuItemAdminPanelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAdminPanelActionPerformed
         jDialogAdminPanel.setVisible(true);
+        
+        jLabel7.setVisible(false);
+        jLabel8.setVisible(false);
+        jLabel9.setVisible(false);
+        jLabel10.setVisible(false);
+        jLabel11.setVisible(false);
+        jLabel12.setVisible(false);
+        jLabel13.setVisible(false);
+        
+        jTextFieldItemName.setVisible(false);
+        jTextFieldItemPrice.setVisible(false);
+        jTextFieldItemStock.setVisible(false);
+        jTextFieldItemExpirationDate.setVisible(false);
+        jTextFieldItemDescription.setVisible(false);
+        
+        jListSupplier.setVisible(false);
+        jListCategory.setVisible(false);
+        
+        jButtonAddItem.setVisible(false);
     }//GEN-LAST:event_jMenuItemAdminPanelActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -577,11 +596,33 @@ public class CNIT255Final extends javax.swing.JFrame {
         if((loginCheck.getUsername().equals(adminProfile.getLoginCreds().getUsername())) && (loginCheck.getPass().equals(adminProfile.getLoginCreds().getPass())))
         {
             System.out.println("bruh moment");
+            jLabel7.setVisible(true);
+            jLabel8.setVisible(true);
+            jLabel9.setVisible(true);
+            jLabel10.setVisible(true);
+            jLabel11.setVisible(true);
+            jLabel12.setVisible(true);
+            jLabel13.setVisible(true);
+        
+            jTextFieldItemName.setVisible(true);
+            jTextFieldItemPrice.setVisible(true);
+            jTextFieldItemStock.setVisible(true);
+            jTextFieldItemExpirationDate.setVisible(true);
+            jTextFieldItemDescription.setVisible(true);
+        
+            jListSupplier.setVisible(true);
+            jListCategory.setVisible(true);
+            
+            jButtonAddItem.setVisible(true);
+            
+            jTextFieldUsername.setText("");
+            jPasswordField.setText("");
         }
         else
         {
             JFrame about = new JFrame();
             JOptionPane.showMessageDialog(about, "Incorrect login credentials.\nPlease try again.");
+            jPasswordField.setText("");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -592,6 +633,13 @@ public class CNIT255Final extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jButtonAddItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddItemActionPerformed
+        JDialog.setDefaultLookAndFeelDecorated(true);
+        int response = JOptionPane.showConfirmDialog( null, "Are you sure you want to add this item?", "Admin Add Itemn",
+            JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE );
+
+        if( response == JOptionPane.YES_OPTION )
+        {
+        
         int supplierIndex = jListSupplier.getSelectedIndex();
         int categoryIndex = jListCategory.getSelectedIndex();
         
@@ -602,7 +650,7 @@ public class CNIT255Final extends javax.swing.JFrame {
         System.out.println(itemStockList.size() - 1);
         System.out.println(supplierIndex);
         System.out.println(categoryIndex);
-        
+        }
     }//GEN-LAST:event_jButtonAddItemActionPerformed
 
 
