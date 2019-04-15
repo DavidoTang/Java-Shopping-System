@@ -5,6 +5,9 @@
 
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
+import javax.swing.JDialog;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
 public class CNIT255Final extends javax.swing.JFrame {
 
     
@@ -23,6 +26,11 @@ public class CNIT255Final extends javax.swing.JFrame {
     private static ArrayList< Item > itemStockList = new ArrayList<>();         //Holds the list of items we offer
     private static ArrayList<Supplier> supplierList = new ArrayList<>();        //Holds the list of suppliers
     private static ArrayList<Category> categoryList = new ArrayList<>();        //Holds the list of categories
+    private static ArrayList< Item > cartList = new ArrayList< Item >();        //Holds the list of items in the customer's cart
+    
+    private static DefaultListModel cartModel = new DefaultListModel();
+    
+    private static double cartTotal = 0.0;
     //private static 
     
     /**
@@ -39,9 +47,8 @@ public class CNIT255Final extends javax.swing.JFrame {
         }
         ProductList.setModel(productModel);
 
-        
-        
-        
+        // Initialize cart JList
+        cartJList.setModel( cartModel );        
     }
 
     /**
@@ -53,22 +60,31 @@ public class CNIT255Final extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         ProductList = new javax.swing.JList<>();
         addToCart = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        cartTotalText = new javax.swing.JTextField();
+        purchaseCartButton = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        cartJList = new javax.swing.JList<>();
+        clearCartButton = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Testerino");
-
         ProductList.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
+        });
+        ProductList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ProductListMouseClicked(evt);
+            }
         });
         jScrollPane1.setViewportView(ProductList);
 
@@ -76,6 +92,35 @@ public class CNIT255Final extends javax.swing.JFrame {
         addToCart.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addToCartActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Your Cart");
+
+        jLabel2.setText("Total:");
+
+        cartTotalText.setEditable(false);
+        cartTotalText.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        cartTotalText.setText("$0.00");
+
+        purchaseCartButton.setText("Purchase Cart");
+        purchaseCartButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                purchaseCartButtonActionPerformed(evt);
+            }
+        });
+
+        cartJList.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane3.setViewportView(cartJList);
+
+        clearCartButton.setText("Clear Cart");
+        clearCartButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clearCartButtonActionPerformed(evt);
             }
         });
 
@@ -102,21 +147,42 @@ public class CNIT255Final extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(addToCart)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(105, 105, 105)
-                .addComponent(jLabel1)
-                .addContainerGap(117, Short.MAX_VALUE))
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(clearCartButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(purchaseCartButton))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                        .addComponent(cartTotalText, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(35, 35, 35)
+                .addGap(16, 16, 16)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE))
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(cartTotalText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(addToCart)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(addToCart)
+                    .addComponent(purchaseCartButton)
+                    .addComponent(clearCartButton))
                 .addGap(27, 27, 27))
         );
 
@@ -140,13 +206,23 @@ public class CNIT255Final extends javax.swing.JFrame {
                                                                     test.getExpirationDate(), test.getItemDescription(), test.getMyCategory(), 
                                                                     5)) );      //5 is the placeholder for ordernumber.
                 //System.out.println("Added: " + currentCustomer.getShoppingcart().getCart().get(0).getName());
-                
+                /*
                 System.out.println("Items in Cart:");
                 for(ItemOrder a : currentCustomer.getShoppingcart().getCart()) {
                     System.out.println(a.getName());
-                }
+                }*/
                 
+                // Change the cart list to reflect current cart changes
+                cartModel.addElement( test.getName() );
+                cartList.add( new Item( test.getName(), test.getPrice(), test.getTheSupplier(),
+                        test.getExpirationDate(), test.getItemDescription(), test.getMyCategory() ));
                 
+                // Calculate new total cart price
+                String cartPrice = cartTotalText.getText().substring( 1 );
+                double newCartPrice = test.getPrice() + Double.parseDouble( cartPrice );
+                cartTotalText.setText( "$" + Double.toString( newCartPrice ) );
+                
+                cartTotal = newCartPrice;
                 
                 return;
             }
@@ -155,10 +231,47 @@ public class CNIT255Final extends javax.swing.JFrame {
         
     }//GEN-LAST:event_addToCartActionPerformed
 
+//<<<<<<< HEAD
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         System.exit(0);             //Exits the window
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+//=======
+    private void ProductListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ProductListMouseClicked
+       
+    }//GEN-LAST:event_ProductListMouseClicked
 
+    private void purchaseCartButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_purchaseCartButtonActionPerformed
+        JDialog.setDefaultLookAndFeelDecorated( true );
+        int response = JOptionPane.showConfirmDialog( null, "Would you like to purchase the cart? Total is $" + cartTotal, "Purchase confirmation",
+            JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE );
+
+        if( response == JOptionPane.YES_OPTION )
+        {
+          System.out.println("Yes button clicked");
+          
+          for( int i = 0; i < cartList.size(); i++ )
+          {
+              cartList.remove( i );
+          }
+          
+          cartModel.removeAllElements();
+          cartTotalText.setText( "$0.0" );
+          cartTotal = 0;
+        }
+    }//GEN-LAST:event_purchaseCartButtonActionPerformed
+
+    private void clearCartButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearCartButtonActionPerformed
+        cartModel.removeAllElements();
+        cartTotalText.setText( "$0.0" );
+        cartTotal = 0;
+        
+        for( int i = 0; i < cartList.size(); i++ )
+        {
+            cartList.remove( i );
+        }
+    }//GEN-LAST:event_clearCartButtonActionPerformed
+//>>>>>>> f6fd454d58f70e91d010e606fc7621c6127879fe
+            //See if this fixed the fucked merge
     /**
      * @param args the command line arguments
      */
@@ -166,6 +279,9 @@ public class CNIT255Final extends javax.swing.JFrame {
 
 
         System.out.println("hi guys...");
+        
+        
+        
         
         //Initalizing Categories
         categoryList.add(new Category("Electronics", "All things electronics"));
@@ -201,14 +317,20 @@ public class CNIT255Final extends javax.swing.JFrame {
         itemStockList.add(addedItem);
     }
     
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JList<String> ProductList;
     private javax.swing.JButton addToCart;
+    private javax.swing.JList<String> cartJList;
+    private javax.swing.JTextField cartTotalText;
+    private javax.swing.JButton clearCartButton;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JButton purchaseCartButton;
     // End of variables declaration//GEN-END:variables
 }
