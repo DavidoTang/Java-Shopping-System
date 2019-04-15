@@ -32,9 +32,9 @@ public class CNIT255Final extends javax.swing.JFrame {
     /**
      * Creates new form CNIT255Final
      */
-    public CNIT255Final() {
+    public CNIT255Final(CustomerAccount currentCust) {
         initComponents();
-
+        currentCustomer = currentCust;
 
         //Lists all of our products in the jList.  jList's variable is called ProductList
         DefaultListModel productModel = new DefaultListModel();
@@ -427,7 +427,8 @@ public class CNIT255Final extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CNIT255Final().setVisible(true);
+                new CNIT255Final(new CustomerAccount()).setVisible(true);
+                //new LoginPage().setVisible(true);
             }
         });
     }
