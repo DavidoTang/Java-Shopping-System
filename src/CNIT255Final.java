@@ -231,11 +231,11 @@ public class CNIT255Final extends javax.swing.JFrame {
         
     }//GEN-LAST:event_addToCartActionPerformed
 
-//<<<<<<< HEAD
+
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         System.exit(0);             //Exits the window
     }//GEN-LAST:event_jMenuItem1ActionPerformed
-//=======
+
     private void ProductListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ProductListMouseClicked
        
     }//GEN-LAST:event_ProductListMouseClicked
@@ -270,8 +270,8 @@ public class CNIT255Final extends javax.swing.JFrame {
             cartList.remove( i );
         }
     }//GEN-LAST:event_clearCartButtonActionPerformed
-//>>>>>>> f6fd454d58f70e91d010e606fc7621c6127879fe
-            //See if this fixed the fucked merge
+
+    
     /**
      * @param args the command line arguments
      */
