@@ -364,7 +364,7 @@ public class CNIT255Final extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(44, 44, 44)
                         .addComponent(addToCart)
@@ -372,12 +372,15 @@ public class CNIT255Final extends javax.swing.JFrame {
                         .addComponent(clearCartButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(purchaseCartButton))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(13, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(20, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addGap(83, 83, 83))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -592,15 +595,27 @@ public class CNIT255Final extends javax.swing.JFrame {
         //Initalizing Categories
         categoryList.add(new Category("Electronics", "All things electronics"));
         categoryList.add(new Category("Food", "Items which can be consumed"));
-
+        categoryList.add(new Category("Games", "The hottest games for all platforms"));
         //Initalizing Suppliers
         supplierList.add(new Supplier("FastFit", "Ben Wagrez", (new SupplierContactInfo("fastfit@fastfit.org", "4042728293",
         "12233312", "benwagrez@fastfit.org", "7048217332", "www.fastfit.org")) ));
+        supplierList.add(new Supplier("BongoCo", "Bongo Man", (new SupplierContactInfo("bongo@bongoco.com", "8085038020", "58726184", "bongoman@bongoco.com", "9498187115", "www.bongoco.com"))));
 
 
         //Initalize some Items
         itemStockList.add(new ItemStock(0,"Raspberry Pi", 35.00, supplierList.get(0), "N/A", "A tiny computer", categoryList.get(0) ,15));
         itemStockList.add(new ItemStock(1,"David's Sanityyyyy", 3301.00, supplierList.get(0), "4/16/19", "The quickly fading entity of David's Sanity", categoryList.get(1), 1));
+        itemStockList.add(new ItemStock(2, "Tom Clancy's Rainbow Six: Siege", 19.99, supplierList.get(1), "N/A", "", categoryList.get(2), 500));
+        itemStockList.add(new ItemStock(3, "Sid Meier’s Civilization VI", 59.99, supplierList.get(1), "N/A", "", categoryList.get(2), 700));
+        itemStockList.add(new ItemStock(4, "Rocket League", 19.99, supplierList.get(1), "N/A", "", categoryList.get(2), 400));
+        itemStockList.add(new ItemStock(5, "Far Cry 5", 59.99, supplierList.get(1), "N/A", "", categoryList.get(2), 700));
+        itemStockList.add(new ItemStock(6, "Grand Theft Auto V", 29.99, supplierList.get(1), "N/A", "", categoryList.get(2), 200));
+        itemStockList.add(new ItemStock(7, "Warframe", 0.00, supplierList.get(1), "N/A", "", categoryList.get(2), 1000));
+        itemStockList.add(new ItemStock(8, "Kingdon Come: Deliverance", 39.99, supplierList.get(1), "N/A", "", categoryList.get(2), 1500));
+        itemStockList.add(new ItemStock(9, "Counter-Strike: Global Offensive", 14.99, supplierList.get(1), "N/A", "", categoryList.get(2), 600));
+        itemStockList.add(new ItemStock(10, "Jurassic World: Evolution", 44.99, supplierList.get(1), "N/A", "", categoryList.get(2), 800));
+        itemStockList.add(new ItemStock(11, "PlayerUnknown’s Battlegrounds", 29.99, supplierList.get(1), "N/A", "", categoryList.get(2), 700));
+
         //itemStockList.add(e)
 
 
