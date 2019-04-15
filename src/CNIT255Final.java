@@ -106,6 +106,7 @@ public class CNIT255Final extends javax.swing.JFrame {
         jListCategory = new javax.swing.JList<>();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
+        jButtonAddItem = new javax.swing.JButton();
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -170,6 +171,13 @@ public class CNIT255Final extends javax.swing.JFrame {
 
         jLabel13.setText("Category");
 
+        jButtonAddItem.setText("Add Item");
+        jButtonAddItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAddItemActionPerformed(evt);
+            }
+        });
+
         jMenu2.setText("File");
 
         jMenuItem2.setText("Exit Admin Panel");
@@ -231,8 +239,9 @@ public class CNIT255Final extends javax.swing.JFrame {
                 .addGap(32, 32, 32)
                 .addGroup(jDialogAdminPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel13))
-                .addContainerGap(61, Short.MAX_VALUE))
+                    .addComponent(jLabel13)
+                    .addComponent(jButtonAddItem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(93, Short.MAX_VALUE))
         );
         jDialogAdminPanelLayout.setVerticalGroup(
             jDialogAdminPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -272,7 +281,9 @@ public class CNIT255Final extends javax.swing.JFrame {
                         .addGroup(jDialogAdminPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel11)
                             .addComponent(jTextFieldItemDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(292, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButtonAddItem)
+                .addContainerGap(254, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -580,6 +591,20 @@ public class CNIT255Final extends javax.swing.JFrame {
         jDialogAdminPanel.setVisible(false);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
+    private void jButtonAddItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddItemActionPerformed
+        int supplierIndex = jListSupplier.getSelectedIndex();
+        int categoryIndex = jListCategory.getSelectedIndex();
+        
+        itemStockList.add(new ItemStock(itemStockList.size(), jTextFieldItemName.getText(), Double.parseDouble(jTextFieldItemPrice.getText()), supplierList.get(supplierIndex), jTextFieldItemExpirationDate.getText(), jTextFieldItemDescription.getText(), categoryList.get(categoryIndex), Integer.parseInt(jTextFieldItemStock.getText())));
+        
+        refreshLists();
+        
+        System.out.println(itemStockList.size() - 1);
+        System.out.println(supplierIndex);
+        System.out.println(categoryIndex);
+        
+    }//GEN-LAST:event_jButtonAddItemActionPerformed
+
 
     /**
      * @param args the command line arguments
@@ -659,6 +684,7 @@ public class CNIT255Final extends javax.swing.JFrame {
     private javax.swing.JTextField cartTotalText;
     private javax.swing.JButton clearCartButton;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButtonAddItem;
     private javax.swing.JDialog jDialogAdminPanel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
