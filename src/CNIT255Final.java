@@ -3,6 +3,7 @@
  * @author Dave
  */
 
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JDialog;
@@ -22,7 +23,7 @@ public class CNIT255Final extends javax.swing.JFrame {
     
     
     private static CustomerAccount currentCustomer = new CustomerAccount("David", "Tang", "4/14/19", (new Address("1342 Manicott Dr", "New Yourk", "New York", "USA", "23232")), (new ContactInfo("david@gmail.com", "4315581459")), (new LoginCredentials()), "22", "22");
-    private static AdminAccount adminProfile = new AdminAccount("Joe", "Smith", "7/22/16", (new Address("8173 S. Rockland Ave.", "Downers Grove", "Illinois", "USA", "60515")), (new ContactInfo("joesmith@business.com", "6302564410")), (new LoginCredentials()), "A0001", "3/5/13");
+    private static AdminAccount adminProfile;
     
     private static ArrayList< Item > itemStockList = new ArrayList<>();         //Holds the list of items we offer
     private static ArrayList<Supplier> supplierList = new ArrayList<>();        //Holds the list of suppliers
@@ -49,7 +50,17 @@ public class CNIT255Final extends javax.swing.JFrame {
         ProductList.setModel(productModel);
 
         // Initialize cart JList
-        cartJList.setModel( cartModel );        
+        cartJList.setModel( cartModel );
+        
+        //Creating the admin profile, needs to be in a try catch since it throws NoSuchAlgorithmException
+        try
+        {
+            adminProfile = new AdminAccount("Joe", "Smith", "7/22/16", (new Address("8173 S. Rockland Ave.", "Downers Grove", "Illinois", "USA", "60515")), (new ContactInfo("joesmith@business.com", "6302564410")), (new LoginCredentials("admin", "1234qazw")), "A0001", "3/5/13");
+        }
+        catch (NoSuchAlgorithmException e)
+        {
+            System.out.println("Something went wrong, see: " + e);
+        }
     }
 
     /**
@@ -64,8 +75,9 @@ public class CNIT255Final extends javax.swing.JFrame {
         jDialogAdminPanel = new javax.swing.JDialog();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        jTextFieldUsername = new javax.swing.JTextField();
+        jPasswordField = new javax.swing.JPasswordField();
+        jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         ProductList = new javax.swing.JList<>();
         addToCart = new javax.swing.JButton();
@@ -87,9 +99,16 @@ public class CNIT255Final extends javax.swing.JFrame {
 
         jLabel4.setText("Password");
 
-        jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
+        jPasswordField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jPasswordField1ActionPerformed(evt);
+                jPasswordFieldActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("Login");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -99,13 +118,16 @@ public class CNIT255Final extends javax.swing.JFrame {
             jDialogAdminPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDialogAdminPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jDialogAdminPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jDialogAdminPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jDialogAdminPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton1)
+                    .addGroup(jDialogAdminPanelLayout.createSequentialGroup()
+                        .addGroup(jDialogAdminPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jDialogAdminPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextFieldUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(221, Short.MAX_VALUE))
         );
         jDialogAdminPanelLayout.setVerticalGroup(
@@ -114,12 +136,14 @@ public class CNIT255Final extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jDialogAdminPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jDialogAdminPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(238, Short.MAX_VALUE))
+                    .addComponent(jPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton1)
+                .addContainerGap(204, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -331,9 +355,35 @@ public class CNIT255Final extends javax.swing.JFrame {
         jDialogAdminPanel.setVisible(true);
     }//GEN-LAST:event_jMenuItemAdminPanelActionPerformed
 
-    private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
+    private void jPasswordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jPasswordField1ActionPerformed
+    }//GEN-LAST:event_jPasswordFieldActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        LoginCredentials loginCheck = null; //Initialzed with null so Java doesnt freak out
+        
+        try                                 //Another try catch for catching NoSuchAlgorithmException
+        {
+            loginCheck = new LoginCredentials(jTextFieldUsername.getText(), new String(jPasswordField.getPassword()));
+        }
+        catch (NoSuchAlgorithmException e)
+        {
+            System.out.println("Something went wrong, see: " + e);
+        }
+        
+        
+        if((loginCheck.getUsername().equals(adminProfile.getLoginCreds().getUsername())) && (loginCheck.getPass().equals(adminProfile.getLoginCreds().getPass())))
+        {
+            System.out.println("bruh moment");
+        }
+        
+        String username = jTextFieldUsername.getText();
+        String password = new String(jPasswordField.getPassword());
+        
+        System.out.println(username);
+        System.out.println(password);
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     
     /**
@@ -388,6 +438,7 @@ public class CNIT255Final extends javax.swing.JFrame {
     private javax.swing.JList<String> cartJList;
     private javax.swing.JTextField cartTotalText;
     private javax.swing.JButton clearCartButton;
+    private javax.swing.JButton jButton1;
     private javax.swing.JDialog jDialogAdminPanel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -397,10 +448,10 @@ public class CNIT255Final extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItemAdminPanel;
-    private javax.swing.JPasswordField jPasswordField1;
+    private javax.swing.JPasswordField jPasswordField;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextFieldUsername;
     private javax.swing.JButton purchaseCartButton;
     // End of variables declaration//GEN-END:variables
 }

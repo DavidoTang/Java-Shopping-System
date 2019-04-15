@@ -70,7 +70,7 @@ public class LoginCredentials {
         byte[] encodedhash = algorithm.digest(pass.getBytes(StandardCharsets.UTF_8));
         
         String hashedPassword = bytesToHex(encodedhash);
-        System.out.println("String: " + hashedPassword);
+        //System.out.println("String: " + hashedPassword);
         
         return hashedPassword;
     }
