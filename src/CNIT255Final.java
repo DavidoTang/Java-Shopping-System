@@ -46,7 +46,7 @@ public class CNIT255Final extends javax.swing.JFrame {
         refreshLists();
         
         
-        /*DefaultListModel supplierModel = new DefaultListModel();
+        DefaultListModel supplierModel = new DefaultListModel();
         for (int i=0; i<supplierList.size(); i++) {
             supplierModel.addElement(supplierList.get(i).getCompanyName());
         }
@@ -57,7 +57,7 @@ public class CNIT255Final extends javax.swing.JFrame {
             categoryModel.addElement(categoryList.get(i).getCategoryName());
             System.out.println(categoryList.get(i).getCategoryName());
         }
-        jListCategory.setModel(categoryModel);*/
+        jListCategory.setModel(categoryModel);
         
         
         
@@ -84,6 +84,31 @@ public class CNIT255Final extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jDialogAdminPanel = new javax.swing.JDialog();
+        jLabel5 = new javax.swing.JLabel();
+        jTextFieldUsername = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        jPasswordField = new javax.swing.JPasswordField();
+        jButton1 = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        jTextFieldItemName = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        jTextFieldItemPrice = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        jTextFieldItemStock = new javax.swing.JTextField();
+        jTextFieldItemExpirationDate = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jTextFieldItemDescription = new javax.swing.JTextField();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jListSupplier = new javax.swing.JList<>();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jListCategory = new javax.swing.JList<>();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jMenuBar2 = new javax.swing.JMenuBar();
+        jMenu2 = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
         jScrollPane1 = new javax.swing.JScrollPane();
         ProductList = new javax.swing.JList<>();
         addToCart = new javax.swing.JButton();
@@ -102,6 +127,153 @@ public class CNIT255Final extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItemAdminPanel = new javax.swing.JMenuItem();
+
+        jDialogAdminPanel.setMinimumSize(new java.awt.Dimension(700, 475));
+        jDialogAdminPanel.setPreferredSize(new java.awt.Dimension(700, 475));
+
+        jLabel5.setText("Username");
+
+        jLabel6.setText("Password");
+
+        jButton1.setText("Login");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jLabel7.setText("Name");
+
+        jLabel8.setText("Price");
+
+        jLabel9.setText("Stock Level");
+
+        jLabel10.setText("Expiration Date");
+
+        jLabel11.setText("Description");
+
+        jListSupplier.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane4.setViewportView(jListSupplier);
+
+        jListCategory.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane5.setViewportView(jListCategory);
+
+        jLabel12.setText("Supplier");
+
+        jLabel13.setText("Category");
+
+        jMenu2.setText("File");
+
+        jMenuItem2.setText("Exit Admin Panel");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem2);
+
+        jMenuBar2.add(jMenu2);
+
+        jDialogAdminPanel.setJMenuBar(jMenuBar2);
+
+        javax.swing.GroupLayout jDialogAdminPanelLayout = new javax.swing.GroupLayout(jDialogAdminPanel.getContentPane());
+        jDialogAdminPanel.getContentPane().setLayout(jDialogAdminPanelLayout);
+        jDialogAdminPanelLayout.setHorizontalGroup(
+            jDialogAdminPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDialogAdminPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jDialogAdminPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jDialogAdminPanelLayout.createSequentialGroup()
+                        .addComponent(jLabel11)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTextFieldItemDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jDialogAdminPanelLayout.createSequentialGroup()
+                        .addComponent(jLabel10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTextFieldItemExpirationDate, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jDialogAdminPanelLayout.createSequentialGroup()
+                        .addGroup(jDialogAdminPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jButton1)
+                            .addGroup(jDialogAdminPanelLayout.createSequentialGroup()
+                                .addGroup(jDialogAdminPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel6))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jDialogAdminPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextFieldUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(49, 49, 49)
+                        .addGroup(jDialogAdminPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jDialogAdminPanelLayout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jTextFieldItemName, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jDialogAdminPanelLayout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jTextFieldItemPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jDialogAdminPanelLayout.createSequentialGroup()
+                                .addComponent(jLabel9)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jTextFieldItemStock, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(37, 37, 37)
+                .addGroup(jDialogAdminPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel12))
+                .addGap(32, 32, 32)
+                .addGroup(jDialogAdminPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel13))
+                .addContainerGap(61, Short.MAX_VALUE))
+        );
+        jDialogAdminPanelLayout.setVerticalGroup(
+            jDialogAdminPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDialogAdminPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jDialogAdminPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jDialogAdminPanelLayout.createSequentialGroup()
+                        .addComponent(jLabel13)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jDialogAdminPanelLayout.createSequentialGroup()
+                        .addComponent(jLabel12)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jDialogAdminPanelLayout.createSequentialGroup()
+                        .addGroup(jDialogAdminPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(jTextFieldUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7)
+                            .addComponent(jTextFieldItemName, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jDialogAdminPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(jPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8)
+                            .addComponent(jTextFieldItemPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jDialogAdminPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton1)
+                            .addComponent(jLabel9)
+                            .addComponent(jTextFieldItemStock, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jDialogAdminPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel10)
+                            .addComponent(jTextFieldItemExpirationDate, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jDialogAdminPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel11)
+                            .addComponent(jTextFieldItemDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(292, Short.MAX_VALUE))
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -372,8 +544,38 @@ public class CNIT255Final extends javax.swing.JFrame {
     }//GEN-LAST:event_clearCartButtonActionPerformed
 
     private void jMenuItemAdminPanelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAdminPanelActionPerformed
-        //jDialogAdminPanel.setVisible(true);
+        jDialogAdminPanel.setVisible(true);
     }//GEN-LAST:event_jMenuItemAdminPanelActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        LoginCredentials loginCheck = null; //Initialzed with null so Java doesnt freak out
+        
+        try                                 //Another try catch for catching NoSuchAlgorithmException
+        {
+            loginCheck = new LoginCredentials(jTextFieldUsername.getText(), new String(jPasswordField.getPassword()));
+        }
+        catch (NoSuchAlgorithmException e)
+        {
+            System.out.println("Something went wrong, see: " + e);
+        }
+        
+        
+        if((loginCheck.getUsername().equals(adminProfile.getLoginCreds().getUsername())) && (loginCheck.getPass().equals(adminProfile.getLoginCreds().getPass())))
+        {
+            System.out.println("bruh moment");
+        }
+        else
+        {
+            JFrame about = new JFrame();
+            JOptionPane.showMessageDialog(about, "Incorrect login credentials.\nPlease try again.");
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        jTextFieldUsername.setText("");
+        jPasswordField.setText("");
+        jDialogAdminPanel.setVisible(false);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
 
     /**
@@ -441,17 +643,42 @@ public class CNIT255Final extends javax.swing.JFrame {
     private javax.swing.JList<String> cartJList;
     private javax.swing.JTextField cartTotalText;
     private javax.swing.JButton clearCartButton;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JDialog jDialogAdminPanel;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JList<String> jListCategory;
+    private javax.swing.JList<String> jListSupplier;
     private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItemAdminPanel;
+    private javax.swing.JPasswordField jPasswordField;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JTextField jTextFieldItemDescription;
+    private javax.swing.JTextField jTextFieldItemExpirationDate;
+    private javax.swing.JTextField jTextFieldItemName;
+    private javax.swing.JTextField jTextFieldItemPrice;
+    private javax.swing.JTextField jTextFieldItemStock;
+    private javax.swing.JTextField jTextFieldUsername;
     private javax.swing.JList<String> productQuantityList;
     private javax.swing.JButton purchaseCartButton;
     // End of variables declaration//GEN-END:variables
