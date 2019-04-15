@@ -4,6 +4,7 @@
  */
 public class Item {
     
+    private int index;
     private String name;
     private double price;
     private Supplier theSupplier;
@@ -11,9 +12,10 @@ public class Item {
     private String itemDescription;
     private Category myCategory;
     
-    public Item(String name, double price, Supplier theSupplier,
+    public Item(int index, String name, double price, Supplier theSupplier,
             String expirationDate, String itemDescription, Category myCategory) {
        
+        this.index = index;
         this.name = name;
         this.price = price;
         this.theSupplier = theSupplier;
@@ -24,6 +26,7 @@ public class Item {
     
     public Item() {
         
+        this.index = -1;
         this.name = "";
         this.price = 0;
         this.theSupplier = null;
@@ -78,6 +81,14 @@ public class Item {
 
     public void setMyCategory(Category myCategory) {
         this.myCategory = myCategory;
+    }
+
+    public int getIndex() {
+        return index;
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
     }
     
     

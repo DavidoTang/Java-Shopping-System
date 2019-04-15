@@ -6,10 +6,10 @@ public class ItemOrder extends Item {
     
     private int orderNum;
     
-    public ItemOrder (String name, double price, Supplier theSupplier,
+    public ItemOrder (int index, String name, double price, Supplier theSupplier,
             String expirationDate, String itemDescription, Category myCategory, int orderNum) {
         
-        super(name, price, theSupplier, expirationDate, itemDescription, myCategory);
+        super(index, name, price, theSupplier, expirationDate, itemDescription, myCategory);
         this.orderNum = orderNum;
  
     }
