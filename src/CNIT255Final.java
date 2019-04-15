@@ -3,6 +3,7 @@
  * @author Dave
  */
 
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JDialog;
@@ -10,30 +11,49 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 public class CNIT255Final extends javax.swing.JFrame {
 
-    
 
-    
-    
-    private static CustomerAccount currentCustomer = new CustomerAccount("David", "Tang", "4/14/19", (new Address("1342 Manicott Dr", "New Yourk", "New York", "USA", "23232")), (new ContactInfo("david@gmail.com", "434343443")), (new LoginCredentials()), "22", "22");
-    
+
+
+
+    private static CustomerAccount currentCustomer = new CustomerAccount("David", "Tang", "4/14/19", (new Address("1342 Manicott Dr", "New Yourk", "New York", "USA", "23232")), (new ContactInfo("david@gmail.com", "4315581459")), (new LoginCredentials()), "22", "22");
+    private static AdminAccount adminProfile;
+
     private static ArrayList< ItemStock > itemStockList = new ArrayList<>();         //Holds the list of items we offer
     private static ArrayList<Supplier> supplierList = new ArrayList<>();        //Holds the list of suppliers
     private static ArrayList<Category> categoryList = new ArrayList<>();        //Holds the list of categories
     private static ArrayList< Item > cartList = new ArrayList< Item >();        //Holds the list of items in the customer's cart
-    
+
     private static DefaultListModel cartModel = new DefaultListModel();
-    
+
     private static double cartTotal = 0.0;
-    //private static 
-    
+    //private static
+
     /**
      * Creates new form CNIT255Final
      */
     public CNIT255Final() {
         initComponents();
-        
-        refreshLists();
-             
+
+
+        //Lists all of our products in the jList.  jList's variable is called ProductList
+        DefaultListModel productModel = new DefaultListModel();
+        for (int i=0; i<itemStockList.size(); i++) {
+            productModel.addElement(itemStockList.get(i).getName());
+        }
+        ProductList.setModel(productModel);
+
+        // Initialize cart JList
+        cartJList.setModel( cartModel );
+
+        //Creating the admin profile, needs to be in a try catch since it throws NoSuchAlgorithmException
+        try
+        {
+            adminProfile = new AdminAccount("Joe", "Smith", "7/22/16", (new Address("8173 S. Rockland Ave.", "Downers Grove", "Illinois", "USA", "60515")), (new ContactInfo("joesmith@business.com", "6302564410")), (new LoginCredentials("admin", "1234qazw")), "A0001", "3/5/13");
+        }
+        catch (NoSuchAlgorithmException e)
+        {
+            System.out.println("Something went wrong, see: " + e);
+        }
     }
 
     /**
@@ -45,6 +65,12 @@ public class CNIT255Final extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jDialogAdminPanel = new javax.swing.JDialog();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jTextFieldUsername = new javax.swing.JTextField();
+        jPasswordField = new javax.swing.JPasswordField();
+        jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         ProductList = new javax.swing.JList<>();
         addToCart = new javax.swing.JButton();
@@ -62,6 +88,60 @@ public class CNIT255Final extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItemAdminPanel = new javax.swing.JMenuItem();
+
+        jDialogAdminPanel.setMinimumSize(new java.awt.Dimension(400, 300));
+
+        jLabel3.setText("Username");
+
+        jLabel4.setText("Password");
+
+        jPasswordField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jPasswordFieldActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("Login");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jDialogAdminPanelLayout = new javax.swing.GroupLayout(jDialogAdminPanel.getContentPane());
+        jDialogAdminPanel.getContentPane().setLayout(jDialogAdminPanelLayout);
+        jDialogAdminPanelLayout.setHorizontalGroup(
+            jDialogAdminPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDialogAdminPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jDialogAdminPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton1)
+                    .addGroup(jDialogAdminPanelLayout.createSequentialGroup()
+                        .addGroup(jDialogAdminPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jDialogAdminPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextFieldUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(221, Short.MAX_VALUE))
+        );
+        jDialogAdminPanelLayout.setVerticalGroup(
+            jDialogAdminPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDialogAdminPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jDialogAdminPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jTextFieldUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jDialogAdminPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton1)
+                .addContainerGap(204, Short.MAX_VALUE))
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -135,6 +215,14 @@ public class CNIT255Final extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem1);
 
+        jMenuItemAdminPanel.setText("Admin Panel");
+        jMenuItemAdminPanel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemAdminPanelActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItemAdminPanel);
+
         jMenuBar1.add(jMenu1);
 
         setJMenuBar(jMenuBar1);
@@ -204,14 +292,14 @@ public class CNIT255Final extends javax.swing.JFrame {
 
     private void addToCartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addToCartActionPerformed
         //Adds the currently selected jList item into the 'currentCustomer's shopping cart
-        
+
         String target = ProductList.getSelectedValue();
 
         for( int i = 0; i < itemStockList.size(); i++ )
         {
             ItemStock test = itemStockList.get( i );
             String checkName = test.getName();
-            
+
             if( checkName.equals( target ))
             {
                 //Checks to see if there is enough stock
@@ -219,15 +307,15 @@ public class CNIT255Final extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this, "Item is out of stock!", "Item Out of Stock", JOptionPane.ERROR_MESSAGE);
                     break;
                 }
-                
+
                 System.out.println("Found " + target);
-       
+
                 //                (No longer Relivent, using cartList ArrayList)
-                
+
 //                 currentCustomer.getShoppingcart().addItemToCart( (new ItemOrder(test.getIndex(), test.getName(), test.getPrice(), test.getTheSupplier(),
-//                                                                    test.getExpirationDate(), test.getItemDescription(), test.getMyCategory(), 
+//                                                                    test.getExpirationDate(), test.getItemDescription(), test.getMyCategory(),
 //                                                                    5)) );      //5 is the placeholder for ordernumber.
-                
+
                 //System.out.println("Added: " + currentCustomer.getShoppingcart().getCart().get(0).getName());
                 /*
                 System.out.println("Items in Cart:");
@@ -239,34 +327,34 @@ public class CNIT255Final extends javax.swing.JFrame {
                 cartModel.addElement( test.getName() );
                 cartList.add( new Item(test.getIndex(), test.getName(), test.getPrice(), test.getTheSupplier(), //????~~
                         test.getExpirationDate(), test.getItemDescription(), test.getMyCategory() ));
-                
+
                 //Decreasing Stock
                 itemStockList.get(i).setStock( (itemStockList.get(i).getStock() - 1) );
-                
-                
+
+
                 // Calculate new total cart price
                 String cartPrice = cartTotalText.getText().substring( 1 );
                 double newCartPrice = test.getPrice() + Double.parseDouble( cartPrice );
                 cartTotalText.setText( "$" + Double.toString( newCartPrice ) );
-                
+
                 cartTotal = newCartPrice;
-                
+
                 refreshLists();
-                
+
                 return;
             }
         }
-        
-        
+
+
     }//GEN-LAST:event_addToCartActionPerformed
 
-//<<<<<<< HEAD
+
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         System.exit(0);             //Exits the window
     }//GEN-LAST:event_jMenuItem1ActionPerformed
-//=======
+
     private void ProductListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ProductListMouseClicked
-       
+
     }//GEN-LAST:event_ProductListMouseClicked
 
     private void purchaseCartButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_purchaseCartButtonActionPerformed
@@ -279,13 +367,13 @@ public class CNIT255Final extends javax.swing.JFrame {
           System.out.println("Yes button clicked");
           System.out.println("Cart size: " + cartList.size());
 
-          
+
             int cartSize = cartList.size();
             for( int i = cartSize - 1; i >= 0; i-- )
             {
                 System.out.println("cartList.size(): " + cartList.size());
                 System.out.println("Loop #: " + i);
-                
+
                 //removing 1 from the stock
                 //int currentStock = itemStockList.get( (cartList.get(i).getIndex()) ).getStock();
                 //itemStockList.get( (cartList.get(i).getIndex()) ).setStock(currentStock - 1);
@@ -307,23 +395,57 @@ public class CNIT255Final extends javax.swing.JFrame {
         cartModel.removeAllElements();
         cartTotalText.setText( "$0.0" );
         cartTotal = 0;
-        
+
         for( int i = cartList.size() - 1; i >= 0; i-- )
         {
-            
-            //Adding items back into inventory 
+
+            //Adding items back into inventory
             int currentStock = itemStockList.get( (cartList.get(i).getIndex()) ).getStock();
             itemStockList.get( (cartList.get(i).getIndex()) ).setStock(currentStock + 1);
-            
+
             //removing item from cart
             cartList.remove( i );
-            
+
             System.out.println("Cart size: " + cartList.size());
             refreshLists();
         }
     }//GEN-LAST:event_clearCartButtonActionPerformed
-//>>>>>>> f6fd454d58f70e91d010e606fc7621c6127879fe
-            //See if this fixed the fucked merge
+
+    private void jMenuItemAdminPanelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAdminPanelActionPerformed
+        jDialogAdminPanel.setVisible(true);
+    }//GEN-LAST:event_jMenuItemAdminPanelActionPerformed
+
+    private void jPasswordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPasswordFieldActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        LoginCredentials loginCheck = null; //Initialzed with null so Java doesnt freak out
+
+        try                                 //Another try catch for catching NoSuchAlgorithmException
+        {
+            loginCheck = new LoginCredentials(jTextFieldUsername.getText(), new String(jPasswordField.getPassword()));
+        }
+        catch (NoSuchAlgorithmException e)
+        {
+            System.out.println("Something went wrong, see: " + e);
+        }
+
+
+        if((loginCheck.getUsername().equals(adminProfile.getLoginCreds().getUsername())) && (loginCheck.getPass().equals(adminProfile.getLoginCreds().getPass())))
+        {
+            System.out.println("bruh moment");
+        }
+
+        String username = jTextFieldUsername.getText();
+        String password = new String(jPasswordField.getPassword());
+
+        System.out.println(username);
+        System.out.println(password);
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+
     /**
      * @param args the command line arguments
      */
@@ -331,32 +453,32 @@ public class CNIT255Final extends javax.swing.JFrame {
 
 
         System.out.println("hi guys...");
-        
-        
-        
-        
+
+
+
+
         //Initalizing Categories
         categoryList.add(new Category("Electronics", "All things electronics"));
         categoryList.add(new Category("Food", "Items which can be consumed"));
-        
+
         //Initalizing Suppliers
-        supplierList.add(new Supplier("FastFit", "Ben Wagrez", (new SupplierContactInfo("fastfit@fastfit.org", "4042728293", 
+        supplierList.add(new Supplier("FastFit", "Ben Wagrez", (new SupplierContactInfo("fastfit@fastfit.org", "4042728293",
         "12233312", "benwagrez@fastfit.org", "7048217332", "www.fastfit.org")) ));
-        
-        
+
+
         //Initalize some Items
         itemStockList.add(new ItemStock(0,"Raspberry Pi", 35.00, supplierList.get(0), "N/A", "A tiny computer", categoryList.get(0) ,15));
         itemStockList.add(new ItemStock(1,"David's Sanityyyyy", 3301.00, supplierList.get(0), "4/16/19", "The quickly fading entity of David's Sanity", categoryList.get(1), 1));
         //itemStockList.add(e)
-        
-        
-        
-        
-        
-        
-        
-        
-        
+
+
+
+
+
+
+
+
+
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -364,9 +486,9 @@ public class CNIT255Final extends javax.swing.JFrame {
             }
         });
     }
-    
+
     public void refreshLists() {
-        
+
         DefaultListModel productModel = new DefaultListModel();
         DefaultListModel productQuantModel = new DefaultListModel();
         for (int i=0; i<itemStockList.size(); i++) {
@@ -375,20 +497,22 @@ public class CNIT255Final extends javax.swing.JFrame {
         }
         ProductList.setModel(productModel);
         productQuantityList.setModel(productQuantModel);
-        
+
         // Initialize cart JList
-        cartJList.setModel( cartModel );      
-        
+        cartJList.setModel( cartModel );
+
     }
 
-    
-    
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JList<String> ProductList;
     private javax.swing.JButton addToCart;
     private javax.swing.JList<String> cartJList;
     private javax.swing.JTextField cartTotalText;
     private javax.swing.JButton clearCartButton;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JDialog jDialogAdminPanel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -396,10 +520,16 @@ public class CNIT255Final extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItemAdminPanel;
+    private javax.swing.JPasswordField jPasswordField;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+<<<<<<< HEAD
     private javax.swing.JList<String> productQuantityList;
+=======
+    private javax.swing.JTextField jTextFieldUsername;
+>>>>>>> 79fe0db78d5be3c6ab7eb1d2f79f3d12d28ee700
     private javax.swing.JButton purchaseCartButton;
     // End of variables declaration//GEN-END:variables
 }
