@@ -411,6 +411,9 @@ public class CNIT255Final extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+<<<<<<< HEAD
+>>>>>>> parent of 9462a72... Category ComboBox displays instantiated Category objects
+=======
 >>>>>>> parent of 9462a72... Category ComboBox displays instantiated Category objects
                 .addContainerGap())
         );
@@ -425,7 +428,11 @@ public class CNIT255Final extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
 <<<<<<< HEAD
+<<<<<<< HEAD
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE)
+=======
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
+>>>>>>> parent of 9462a72... Category ComboBox displays instantiated Category objects
 =======
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
 >>>>>>> parent of 9462a72... Category ComboBox displays instantiated Category objects
