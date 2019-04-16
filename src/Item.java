@@ -78,6 +78,11 @@ public class Item {
     public Category getMyCategory() {
         return myCategory;
     }
+    
+    public String getCategoryName()
+    {
+        return myCategory.getCategoryName();
+    }
 
     public void setMyCategory(Category myCategory) {
         this.myCategory = myCategory;

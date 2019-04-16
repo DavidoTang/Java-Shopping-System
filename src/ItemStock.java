@@ -16,15 +16,6 @@ public class ItemStock extends Item {
         super();
         stock = 0;
     }
-
-    
-    
-    
-    
-    
-    
-    
-    
     
     public int getStock() {
         return stock;
