@@ -371,9 +371,6 @@
                               <Component id="jLabel1" min="-2" pref="89" max="-2" attributes="0"/>
                               <Component id="jScrollPane3" min="-2" pref="356" max="-2" attributes="0"/>
                           </Group>
-<<<<<<< HEAD
->>>>>>> parent of 9462a72... Category ComboBox displays instantiated Category objects
-=======
 >>>>>>> parent of 9462a72... Category ComboBox displays instantiated Category objects
                       </Group>
                   </Group>
@@ -394,11 +391,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
 <<<<<<< HEAD
-<<<<<<< HEAD
                   <Component id="jScrollPane1" pref="237" max="32767" attributes="0"/>
-=======
-                  <Component id="jScrollPane1" pref="240" max="32767" attributes="0"/>
->>>>>>> parent of 9462a72... Category ComboBox displays instantiated Category objects
 =======
                   <Component id="jScrollPane1" pref="240" max="32767" attributes="0"/>
 >>>>>>> parent of 9462a72... Category ComboBox displays instantiated Category objects
