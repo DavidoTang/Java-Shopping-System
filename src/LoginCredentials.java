@@ -11,21 +11,20 @@ public class LoginCredentials {
     
     private String username;
     private String pass;
-    private SecurityQuestion myQuestion;
+    private List<SecurityQuestion> securityQuestions = new ArrayList<SecurityQuestion>(2);
 
     
-    public LoginCredentials(String username, String pass, SecurityQuestion myQuestion) throws NoSuchAlgorithmException {
+    public LoginCredentials(String username, String pass, ArrayList<SecurityQuestion> securityQuestions) throws NoSuchAlgorithmException {
         this.username = username;
         setPass(pass);
-        this.myQuestion = myQuestion;
+        this.securityQuestions = securityQuestions;
     }
-    //Use if entering an already hashed password
     public LoginCredentials(String username, String pass) throws NoSuchAlgorithmException {
         this.username = username;
-        this.pass = pass;
+        setPass(pass);
     }
     public LoginCredentials() {
-        myQuestion = null;
+        securityQuestions = null;
     }
     
     
@@ -44,23 +43,10 @@ public class LoginCredentials {
         this.username = username;
     }
     
-    //REMOVE AFTER TESTING
     public String getPass()
     {
         return pass;        //Returns a hashed password
     }
-    
-    public boolean checkPassword(String password) throws NoSuchAlgorithmException{
-        String hashedPass = sha256Hash(password);
-        System.out.println("Checking: " + hashedPass);
-        System.out.println("Correct is: " + pass);
-        if(hashedPass.equals(pass)) {
-            return true;
-        }
-        
-        return false;
-    }
-    
     
 
     /**
@@ -102,15 +88,15 @@ public class LoginCredentials {
     /**
      * @return the securityQuestions
      */
-    public SecurityQuestion getSecurityQuestions() {
-        return myQuestion;
+    public List<SecurityQuestion> getSecurityQuestions() {
+        return securityQuestions;
     }
 
     /**
      * @param securityQuestions the securityQuestions to set
      */
-    public void setSecurityQuestions(SecurityQuestion myQuestion) {
-        this.myQuestion = myQuestion;
+    public void setSecurityQuestions(List<SecurityQuestion> securityQuestions) {
+        this.securityQuestions = securityQuestions;
     }
     
     

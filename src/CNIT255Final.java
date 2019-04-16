@@ -16,7 +16,7 @@ public class CNIT255Final extends javax.swing.JFrame {
 
 
 
-    private static CustomerAccount currentCustomer;// = new CustomerAccount("David", "Tang", "4/14/19", (new Address("1342 Manicott Dr", "New Yourk", "New York", "USA", "23232")), (new ContactInfo("david@gmail.com", "4315581459")), (new LoginCredentials()), "22", "22");
+    private static CustomerAccount currentCustomer = new CustomerAccount("David", "Tang", "4/14/19", (new Address("1342 Manicott Dr", "New Yourk", "New York", "USA", "23232")), (new ContactInfo("david@gmail.com", "4315581459")), (new LoginCredentials()), "22", "22");
     private static AdminAccount adminProfile;
 
     private static ArrayList< ItemStock > itemStockList = new ArrayList<>();         //Holds the list of items we offer
@@ -60,8 +60,6 @@ public class CNIT255Final extends javax.swing.JFrame {
         jListCategory.setModel(categoryModel);
         
         
-        //Cart Name
-        cartName.setText(currentCustomer.getFirstName() + "'s Cart");
         
         // Initialize cart JList
         cartJList.setModel( cartModel );
@@ -115,7 +113,7 @@ public class CNIT255Final extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         ProductList = new javax.swing.JList<>();
         addToCart = new javax.swing.JButton();
-        cartName = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         cartTotalText = new javax.swing.JTextField();
         purchaseCartButton = new javax.swing.JButton();
@@ -132,6 +130,7 @@ public class CNIT255Final extends javax.swing.JFrame {
         jMenuItemAdminPanel = new javax.swing.JMenuItem();
 
         jDialogAdminPanel.setMinimumSize(new java.awt.Dimension(700, 475));
+        jDialogAdminPanel.setPreferredSize(new java.awt.Dimension(700, 475));
 
         jLabel5.setText("Username");
 
@@ -309,8 +308,7 @@ public class CNIT255Final extends javax.swing.JFrame {
             }
         });
 
-        cartName.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        cartName.setText("Your Cart");
+        jLabel1.setText("Your Cart");
 
         jLabel2.setText("Total:");
 
@@ -403,8 +401,9 @@ public class CNIT255Final extends javax.swing.JFrame {
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(cartTotalText, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cartName, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -412,12 +411,12 @@ public class CNIT255Final extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cartName)
+                    .addComponent(jLabel1)
                     .addComponent(jLabel3)
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -692,15 +691,8 @@ public class CNIT255Final extends javax.swing.JFrame {
 
         //itemStockList.add(e)
 
-        try {
-            LoginCredentials a = new LoginCredentials();
-            a.setPass("BlackBox");
-            System.out.println(a.getPass());
-       }
-        catch(NoSuchAlgorithmException e) {
-            
-        }
-        
+
+
 
 
 
@@ -710,8 +702,8 @@ public class CNIT255Final extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                //new CNIT255Final(new CustomerAccount()).setVisible(true);
-                new LoginPage().setVisible(true);
+                new CNIT255Final(new CustomerAccount()).setVisible(true);
+                //new LoginPage().setVisible(true);
             }
         });
     }
@@ -738,12 +730,12 @@ public class CNIT255Final extends javax.swing.JFrame {
     private javax.swing.JList<String> ProductList;
     private javax.swing.JButton addToCart;
     private javax.swing.JList<String> cartJList;
-    private javax.swing.JLabel cartName;
     private javax.swing.JTextField cartTotalText;
     private javax.swing.JButton clearCartButton;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonAddItem;
     private javax.swing.JDialog jDialogAdminPanel;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;

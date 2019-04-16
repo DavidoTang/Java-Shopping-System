@@ -1,33 +1,22 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
 /**
  *
  * @author Dave
  */
-import java.util.ArrayList;
-import java.security.NoSuchAlgorithmException;
-import javax.swing.JOptionPane;
 public class LoginPage extends javax.swing.JFrame {
-    
-    private static ArrayList<CustomerAccount> customerList = new ArrayList<>();
-    
-    
-    
-    
+
     /**
      * Creates new form LoginPage
      */
     public LoginPage() {
         initComponents();
-        
-        //Initializing customer list
-        try{
-            customerList.add(new CustomerAccount("Dominic", "Kao", "4/14/19", (new Address("1342 Manicott Dr", "New Yourk", "New York", "USA", "23232")), (new ContactInfo("kaod@purdue.edu", "4315581459")), (new LoginCredentials( "kaoLovesEA", "1f1100469ebcb41de6f7e836d3112d7bcf4a37ca5ad76fd8daeb18b172817675")), "4/15/19", "8/20/1990"));
-            customerList.add(new CustomerAccount("David", "Tang", "4/14/19", (new Address("205 Constitution Drive", "Hendersonville", "NC", "USA", "28792")), (new ContactInfo("tang397@purdue.edu", "888333762")), (new LoginCredentials( "NoodlesInSpace", "985e166be2e9d30c128137bda83a8007e7b1650f165569dcc7b8714668021ff8")), "4/15/19", "4/20/1998"));
-        }
-        catch(NoSuchAlgorithmException e) {
-            
-        }
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -117,37 +106,10 @@ public class LoginPage extends javax.swing.JFrame {
 
     private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
         
-        //Log in Check
-        System.out.println("Trying login..");
-        try{
-            boolean loginFail = true;
-            String username = userName.getText();
-            String pass = password.getText();
-            for (CustomerAccount cust: customerList) {
-                if (username.equals(cust.getLoginCreds().getUsername())) {
-                    //System.out.println("Correct username!");
-                    
-                    if(cust.getLoginCreds().checkPassword(pass)){
-                        //System.out.println("Correct Password!");
-                        loginFail = false;
-                        new CNIT255Final(cust).setVisible(true);
-                        break;
-                    }
-                }
-            }
-            if (loginFail) {
-                JOptionPane.showMessageDialog(this, "Your Username Or Password Is Incorrect.", "Incorrect Login Credentials", JOptionPane.ERROR_MESSAGE);
-
-            }
-
-            //System.out.println("No matches...");
-        }
-        catch(NoSuchAlgorithmException e) {
-            
-        }
+        //if(userName.getText())
         
         
-        //new CNIT255Final(new CustomerAccount("David", "Tang", "4/14/19", (new Address("1342 Manicott Dr", "New Yourk", "New York", "USA", "23232")), (new ContactInfo("david@gmail.com", "4315581459")), (new LoginCredentials()), "22", "22")).setVisible(true);
+        new CNIT255Final(new CustomerAccount("David", "Tang", "4/14/19", (new Address("1342 Manicott Dr", "New Yourk", "New York", "USA", "23232")), (new ContactInfo("david@gmail.com", "4315581459")), (new LoginCredentials()), "22", "22")).setVisible(true);
         
     }//GEN-LAST:event_loginActionPerformed
 
