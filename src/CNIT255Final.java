@@ -722,7 +722,7 @@ public class CNIT255Final extends javax.swing.JFrame {
                 jTextFieldUsername.setText("");
                 jPasswordField.setText("");
                 
-        cboCategory.setModel(categoryModel);
+                cboCategory.setModel(categoryModel);
             }
             else
             {
@@ -768,28 +768,37 @@ public class CNIT255Final extends javax.swing.JFrame {
     private void cboCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboCategoryActionPerformed
         System.out.println( "Selected category: " + cboCategory.getSelectedItem() );
         
-        String targetCategory = cboCategory.getSelectedItem().toString();
+        try
+        {
+            String targetCategory = cboCategory.getSelectedItem().toString();
+            
+            if( targetCategory.equals( "" ) ) // If the default empty category is selected, revert ProductList back to normal
+            {
+                ProductList.setModel( productModel );
+                productQuantityList.setModel( productQuantModel );
+            }
+            else if( targetCategory.equals( "Electronics" ) ) // Set the list to the one that contains electronics only
+            {          
+                ProductList.setModel( productElectronics );
+                productQuantityList.setModel( productElectronicsQuant );
+            }
+            else if( targetCategory.equals( "Food" ) ) // Repeat above except now it's the food only list
+            {
+                ProductList.setModel( productFood );
+                productQuantityList.setModel( productFoodQuant );
+            }
+            else if( targetCategory.equals( "Games" ) )// Repeat above except now it's the games only list
+            {
+                ProductList.setModel( productGames );
+                productQuantityList.setModel( productGamesQuant );
+            }
+        }
+        catch( NullPointerException e )
+        {
+            // Do nothing
+        }
+                
         
-        if( targetCategory.equals( "" ) ) // If the default empty category is selected, revert ProductList back to normal
-        {
-            ProductList.setModel( productModel );
-            productQuantityList.setModel( productQuantModel );
-        }
-        else if( targetCategory.equals( "Electronics" ) ) // Set the list to the one that contains electronics only
-        {          
-            ProductList.setModel( productElectronics );
-            productQuantityList.setModel( productElectronicsQuant );
-        }
-        else if( targetCategory.equals( "Food" ) ) // Repeat above except now it's the food only list
-        {
-            ProductList.setModel( productFood );
-            productQuantityList.setModel( productFoodQuant );
-        }
-        else if( targetCategory.equals( "Games" ) )// Repeat above except now it's the games only list
-        {
-            ProductList.setModel( productGames );
-            productQuantityList.setModel( productGamesQuant );
-        }
     }//GEN-LAST:event_cboCategoryActionPerformed
 
     private void logOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutActionPerformed
@@ -798,10 +807,13 @@ public class CNIT255Final extends javax.swing.JFrame {
         int response = JOptionPane.showConfirmDialog( null, "Are you sure you want to log out?", "Log Out",
             JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE );
 
+        comboCounter = 0; // Reset refresher counter
+        categoryModel.removeAllElements();
+        
         if( response == JOptionPane.YES_OPTION )
         {
-        this.setVisible(false);
-        new LoginPage().setVisible(true);
+            this.setVisible(false);
+            new LoginPage().setVisible(true);
         }
         
     }//GEN-LAST:event_logOutActionPerformed
@@ -925,7 +937,9 @@ public class CNIT255Final extends javax.swing.JFrame {
         if( comboCounter == 0 )
         {
             for (int i = 0; i < categoryList.size(); i++) {
-            System.out.println( "Adding " + categoryList.get( i ).getCategoryName() );
+            //System.out.println( "Adding " + categoryList.get( i ).getCategoryName() );
+            
+            //if( categoryModel.getElementAt( 1 ).getCategoryName.equals( "Electronics" ) )
             categoryModel.addElement(categoryList.get(i).getCategoryName());
             
             comboCounter++;
