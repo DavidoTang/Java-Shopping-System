@@ -12,6 +12,8 @@ import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.event.ListSelectionEvent;
 public class CNIT255Final extends javax.swing.JFrame {
 
 
@@ -76,6 +78,15 @@ public class CNIT255Final extends javax.swing.JFrame {
         }
         jListCategory.setModel(categoryModel);*/
         
+        ProductList.addListSelectionListener(new ListSelectionListener() {
+
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if (!e.getValueIsAdjusting()) {
+                    txtDescription.setText(ProductList.getSelectedValue());
+                }
+            }
+        });
         
         //Cart Name
         cartName.setText(currentCustomer.getFirstName() + "'s Cart");
@@ -120,9 +131,9 @@ public class CNIT255Final extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jTextFieldItemDescription = new javax.swing.JTextField();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jListSupplier = new javax.swing.JList<>();
+        jListSupplier = new javax.swing.JList<String>();
         jScrollPane5 = new javax.swing.JScrollPane();
-        jListCategory = new javax.swing.JList<>();
+        jListCategory = new javax.swing.JList<String>();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jButtonAddItem = new javax.swing.JButton();
@@ -130,22 +141,23 @@ public class CNIT255Final extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jScrollPane1 = new javax.swing.JScrollPane();
-        ProductList = new javax.swing.JList<>();
+        ProductList = new javax.swing.JList<String>();
         addToCart = new javax.swing.JButton();
         cartName = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         cartTotalText = new javax.swing.JTextField();
         purchaseCartButton = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
-        cartJList = new javax.swing.JList<>();
+        cartJList = new javax.swing.JList<String>();
         clearCartButton = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        productQuantityList = new javax.swing.JList<>();
+        productQuantityList = new javax.swing.JList<String>();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        cboCategory = new javax.swing.JComboBox<>();
+        cboCategory = new javax.swing.JComboBox<String>();
         jLabel1 = new javax.swing.JLabel();
         logOut = new javax.swing.JButton();
+        txtDescription = new javax.swing.JTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -174,17 +186,17 @@ public class CNIT255Final extends javax.swing.JFrame {
 
         jLabel11.setText("Description");
 
-        jListSupplier.setModel(new javax.swing.AbstractListModel<String>() {
+        jListSupplier.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+            public Object getElementAt(int i) { return strings[i]; }
         });
         jScrollPane4.setViewportView(jListSupplier);
 
-        jListCategory.setModel(new javax.swing.AbstractListModel<String>() {
+        jListCategory.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+            public Object getElementAt(int i) { return strings[i]; }
         });
         jScrollPane5.setViewportView(jListCategory);
 
@@ -308,11 +320,12 @@ public class CNIT255Final extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
-        ProductList.setModel(new javax.swing.AbstractListModel<String>() {
+        ProductList.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+            public Object getElementAt(int i) { return strings[i]; }
         });
         ProductList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         ProductList.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -345,10 +358,10 @@ public class CNIT255Final extends javax.swing.JFrame {
             }
         });
 
-        cartJList.setModel(new javax.swing.AbstractListModel<String>() {
+        cartJList.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+            public Object getElementAt(int i) { return strings[i]; }
         });
         jScrollPane3.setViewportView(cartJList);
 
@@ -370,7 +383,7 @@ public class CNIT255Final extends javax.swing.JFrame {
 
         jLabel4.setText("Qnt:");
 
-        cboCategory.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cboCategory.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cboCategory.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cboCategoryActionPerformed(evt);
@@ -413,16 +426,9 @@ public class CNIT255Final extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(44, 44, 44)
-                        .addComponent(addToCart)
-                        .addGap(30, 30, 30)
-                        .addComponent(clearCartButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(purchaseCartButton))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(20, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jLabel3)
@@ -433,24 +439,29 @@ public class CNIT255Final extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(28, 28, 28)
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(cartTotalText, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(cartName, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 176, Short.MAX_VALUE)
                                 .addComponent(logOut))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(cartTotalText, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cboCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                                .addComponent(cboCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(txtDescription)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(addToCart)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(clearCartButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(purchaseCartButton)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -466,25 +477,26 @@ public class CNIT255Final extends javax.swing.JFrame {
                     .addComponent(logOut))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(cboCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtDescription, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
-                            .addComponent(cartTotalText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cboCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1))
-                        .addGap(14, 14, 14))
+                            .addComponent(cartTotalText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jScrollPane1)
                     .addComponent(jScrollPane2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(addToCart)
                     .addComponent(purchaseCartButton)
-                    .addComponent(clearCartButton))
-                .addGap(27, 27, 27))
+                    .addComponent(clearCartButton)
+                    .addComponent(addToCart))
+                .addContainerGap())
         );
 
         pack();
@@ -761,20 +773,13 @@ public class CNIT255Final extends javax.swing.JFrame {
         
     }//GEN-LAST:event_logOutActionPerformed
 
-
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
 
-
-        System.out.println("hi guys...");
-
-
-
-
         //Initalizing Categories
-        categoryList.add(new Category("", "") );
+        categoryList.add(new Category("All Items", ""));
         categoryList.add(new Category("Electronics", "All things electronics"));
         categoryList.add(new Category("Food", "Items which can be consumed"));
         categoryList.add(new Category("Games", "The hottest games for all platforms"));
@@ -786,18 +791,22 @@ public class CNIT255Final extends javax.swing.JFrame {
 
 
         //Initalize some Items
-        itemStockList.add(new ItemStock(0,"Raspberry Pi", 35.00, supplierList.get(0), "N/A", "A tiny computer", categoryList.get(1) ,15));
-        itemStockList.add(new ItemStock(1,"David's Sanityyyyy", 3301.00, supplierList.get(0), "4/16/19", "The quickly fading entity of David's Sanity", categoryList.get(2), 1));
-        itemStockList.add(new ItemStock(2, "Tom Clancy's Rainbow Six: Siege", 19.99, supplierList.get(1), "N/A", "", categoryList.get(3), 500));
-        itemStockList.add(new ItemStock(3, "Sid Meier’s Civilization VI", 59.99, supplierList.get(1), "N/A", "", categoryList.get(3), 700));
-        itemStockList.add(new ItemStock(4, "Rocket League", 19.99, supplierList.get(1), "N/A", "", categoryList.get(3), 400));
-        itemStockList.add(new ItemStock(5, "Far Cry 5", 59.99, supplierList.get(1), "N/A", "", categoryList.get(3), 700));
-        itemStockList.add(new ItemStock(6, "Grand Theft Auto V", 29.99, supplierList.get(1), "N/A", "", categoryList.get(3), 200));
-        itemStockList.add(new ItemStock(7, "Warframe", 0.00, supplierList.get(1), "N/A", "", categoryList.get(3), 1000));
-        itemStockList.add(new ItemStock(8, "Kingdon Come: Deliverance", 39.99, supplierList.get(1), "N/A", "", categoryList.get(3), 1500));
-        itemStockList.add(new ItemStock(9, "Counter-Strike: Global Offensive", 14.99, supplierList.get(1), "N/A", "", categoryList.get(3), 600));
-        itemStockList.add(new ItemStock(10, "Jurassic World: Evolution", 44.99, supplierList.get(1), "N/A", "", categoryList.get(3), 800));
-        itemStockList.add(new ItemStock(11, "PlayerUnknown’s Battlegrounds", 29.99, supplierList.get(1), "N/A", "", categoryList.get(3), 700));
+        itemStockList.add(new ItemStock(0,"Raspberry Pi", 35.00, supplierList.get(0), "N/A", "A tiny computer", categoryList.get(1), 2000));
+        itemStockList.add(new ItemStock(1,"Dell XPS 15", 999.99, supplierList.get(0), "N/A", "A tiny computer", categoryList.get(1) ,300));
+        itemStockList.add(new ItemStock(2,"Apple Macboook Pro - 13'", 999.99, supplierList.get(0), "N/A", "A tiny computer", categoryList.get(1) ,400));
+        itemStockList.add(new ItemStock(3,"ASUS Zenbook S13", 1399.99, supplierList.get(0), "N/A", "A tiny computer", categoryList.get(1) ,600));
+        itemStockList.add(new ItemStock(4,"Alienware Area-51m", 2149.99, supplierList.get(0), "N/A", "A tiny computer", categoryList.get(1) ,300));
+        itemStockList.add(new ItemStock(5,"David's Sanityyyyy", 3301.00, supplierList.get(0), "4/16/19", "The quickly fading entity of David's Sanity", categoryList.get(2), 1));
+        itemStockList.add(new ItemStock(15, "Tom Clancy's Rainbow Six: Siege", 19.99, supplierList.get(1), "N/A", "", categoryList.get(3), 500));
+        itemStockList.add(new ItemStock(16, "Sid Meier’s Civilization VI", 59.99, supplierList.get(1), "N/A", "", categoryList.get(3), 700));
+        itemStockList.add(new ItemStock(17, "Rocket League", 19.99, supplierList.get(1), "N/A", "", categoryList.get(3), 400));
+        itemStockList.add(new ItemStock(18, "Far Cry 5", 59.99, supplierList.get(1), "N/A", "", categoryList.get(3), 700));
+        itemStockList.add(new ItemStock(19, "Grand Theft Auto V", 29.99, supplierList.get(1), "N/A", "", categoryList.get(3), 200));
+        itemStockList.add(new ItemStock(20, "Warframe", 0.00, supplierList.get(1), "N/A", "", categoryList.get(3), 1000));
+        itemStockList.add(new ItemStock(21, "Kingdon Come: Deliverance", 39.99, supplierList.get(1), "N/A", "", categoryList.get(3), 1500));
+        itemStockList.add(new ItemStock(22, "Counter-Strike: Global Offensive", 14.99, supplierList.get(1), "N/A", "", categoryList.get(3), 600));
+        itemStockList.add(new ItemStock(23, "Jurassic World: Evolution", 44.99, supplierList.get(1), "N/A", "", categoryList.get(3), 800));
+        itemStockList.add(new ItemStock(24, "PlayerUnknown’s Battlegrounds", 29.99, supplierList.get(1), "N/A", "", categoryList.get(3), 700));
         
         //itemStockList.add(e)
 
@@ -812,11 +821,7 @@ public class CNIT255Final extends javax.swing.JFrame {
         }
         */
 
-
-
-
-
-
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -937,5 +942,6 @@ public class CNIT255Final extends javax.swing.JFrame {
     private javax.swing.JButton logOut;
     private javax.swing.JList<String> productQuantityList;
     private javax.swing.JButton purchaseCartButton;
+    private javax.swing.JTextField txtDescription;
     // End of variables declaration//GEN-END:variables
 }
