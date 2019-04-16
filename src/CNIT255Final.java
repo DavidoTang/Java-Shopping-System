@@ -5,6 +5,7 @@
 
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.text.DecimalFormat;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JDialog;
@@ -12,7 +13,6 @@ import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 public class CNIT255Final extends javax.swing.JFrame {
-
 
 
 
@@ -35,6 +35,8 @@ public class CNIT255Final extends javax.swing.JFrame {
     private static DefaultListModel productFood = new DefaultListModel(); // Food products only
     private static DefaultListModel productGames = new DefaultListModel(); // Game products only
 
+    private static DecimalFormat moneyFormat = new DecimalFormat("#.##");
+    
     private static double cartTotal = 0.0;
     //private static
 
@@ -78,7 +80,7 @@ public class CNIT255Final extends javax.swing.JFrame {
         //Creating the admin profile, needs to be in a try catch since it throws NoSuchAlgorithmException
         try
         {
-            adminProfile = new AdminAccount("Joe", "Smith", "7/22/16", (new Address("8173 S. Rockland Ave.", "Downers Grove", "Illinois", "USA", "60515")), (new ContactInfo("joesmith@business.com", "6302564410")), (new LoginCredentials("admin", "1234qazw")), "A0001", "3/5/13");
+            adminProfile = new AdminAccount("Joe", "Smith", "7/22/16", (new Address("8173 S. Rockland Ave.", "Downers Grove", "Illinois", "USA", "60515")), (new ContactInfo("joesmith@business.com", "6302564410")), (new LoginCredentials("admin", "9b92b150d0d4bcf5727873780ef83b4233d326ff05fc9509f0ee7548b52a7477")), "A0001", "3/5/13");
         }
         catch (NoSuchAlgorithmException e)
         {
@@ -137,6 +139,7 @@ public class CNIT255Final extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         cboCategory = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
+        logOut = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -370,6 +373,13 @@ public class CNIT255Final extends javax.swing.JFrame {
 
         jLabel1.setText("Category:");
 
+        logOut.setText("Log Out");
+        logOut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logOutActionPerformed(evt);
+            }
+        });
+
         jMenu1.setText("File");
 
         jMenuItem1.setText("Exit");
@@ -418,27 +428,36 @@ public class CNIT255Final extends javax.swing.JFrame {
                             .addComponent(jLabel4)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(28, 28, 28)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(cartTotalText, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cartName, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(cartName, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(logOut))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cboCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(cboCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cartName)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cartName)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4)))
+                    .addComponent(logOut))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE)
@@ -510,12 +529,13 @@ public class CNIT255Final extends javax.swing.JFrame {
                 // Calculate new total cart price
                 String cartPrice = cartTotalText.getText().substring( 1 );
                 double newCartPrice = test.getPrice() + Double.parseDouble( cartPrice );
-                cartTotalText.setText( "$" + Double.toString( newCartPrice ) );
+                String stringNewCartPrice = moneyFormat.format(newCartPrice);
+                cartTotalText.setText( "$" + stringNewCartPrice );
 
                 cartTotal = newCartPrice;
                 cboCategory.setSelectedIndex( 0 );
                 refreshLists();
-
+                ProductList.setSelectedValue(target, rootPaneCheckingEnabled);
                 return;
             }
         }
@@ -623,38 +643,43 @@ public class CNIT255Final extends javax.swing.JFrame {
             System.out.println("Something went wrong, see: " + e);
         }
         
-        
-        if((loginCheck.getUsername().equals(adminProfile.getLoginCreds().getUsername())) && (loginCheck.getPass().equals(adminProfile.getLoginCreds().getPass())))
-        {
-            System.out.println("bruh moment");
-            jLabel7.setVisible(true);
-            jLabel8.setVisible(true);
-            jLabel9.setVisible(true);
-            jLabel10.setVisible(true);
-            jLabel11.setVisible(true);
-            jLabel12.setVisible(true);
-            jLabel13.setVisible(true);
-        
-            jTextFieldItemName.setVisible(true);
-            jTextFieldItemPrice.setVisible(true);
-            jTextFieldItemStock.setVisible(true);
-            jTextFieldItemExpirationDate.setVisible(true);
-            jTextFieldItemDescription.setVisible(true);
-        
-            jListSupplier.setVisible(true);
-            jListCategory.setVisible(true);
-            
-            jButtonAddItem.setVisible(true);
-            
-            jTextFieldUsername.setText("");
-            jPasswordField.setText("");
+        try {
+            if((loginCheck.getUsername().equals(adminProfile.getLoginCreds().getUsername())) && (adminProfile.getLoginCreds().checkPassword(jPasswordField.getText())))
+            {                                                                                   //(checkPassword(loginCheck.getPass()))
+                System.out.println("bruh moment");
+                jLabel7.setVisible(true);
+                jLabel8.setVisible(true);
+                jLabel9.setVisible(true);
+                jLabel10.setVisible(true);
+                jLabel11.setVisible(true);
+                jLabel12.setVisible(true);
+                jLabel13.setVisible(true);
+
+                jTextFieldItemName.setVisible(true);
+                jTextFieldItemPrice.setVisible(true);
+                jTextFieldItemStock.setVisible(true);
+                jTextFieldItemExpirationDate.setVisible(true);
+                jTextFieldItemDescription.setVisible(true);
+
+                jListSupplier.setVisible(true);
+                jListCategory.setVisible(true);
+
+                jButtonAddItem.setVisible(true);
+
+                jTextFieldUsername.setText("");
+                jPasswordField.setText("");
+            }
+            else
+            {
+                JFrame about = new JFrame();
+                JOptionPane.showMessageDialog(about, "Incorrect login credentials.\nPlease try again.");
+                jPasswordField.setText("");
+            } 
         }
-        else
-        {
-            JFrame about = new JFrame();
-            JOptionPane.showMessageDialog(about, "Incorrect login credentials.\nPlease try again.");
-            jPasswordField.setText("");
+        catch (NoSuchAlgorithmException e) {
+            
         }
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
@@ -708,6 +733,20 @@ public class CNIT255Final extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_cboCategoryActionPerformed
 
+    private void logOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutActionPerformed
+
+        JDialog.setDefaultLookAndFeelDecorated( true );
+        int response = JOptionPane.showConfirmDialog( null, "Are you sure you want to log out?", "Log Out",
+            JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE );
+
+        if( response == JOptionPane.YES_OPTION )
+        {
+        this.setVisible(false);
+        new LoginPage().setVisible(true);
+        }
+        
+    }//GEN-LAST:event_logOutActionPerformed
+
 
     /**
      * @param args the command line arguments
@@ -748,15 +787,16 @@ public class CNIT255Final extends javax.swing.JFrame {
 
         //itemStockList.add(e)
 
+        /*      commented out, not needed? @ Dave
         try {
             LoginCredentials a = new LoginCredentials();
-            a.setPass("BlackBox");
+            a.setPass("1234qazw");
             System.out.println(a.getPass());
        }
         catch(NoSuchAlgorithmException e) {
             
         }
-        
+        */
 
 
 
@@ -784,6 +824,7 @@ public class CNIT255Final extends javax.swing.JFrame {
         productGames.removeAllElements();
         //productModelCopy.removeAllElements();   
         
+        //Refreshing itemlist and quantities based off of the values in 'itemStockList'
         for (int i=0; i<itemStockList.size(); i++) {
             productModel.addElement(itemStockList.get(i).getName());
             //productModelCopy.addElement(itemStockList.get(i).getName());
@@ -807,7 +848,7 @@ public class CNIT255Final extends javax.swing.JFrame {
         ProductList.setModel(productModel);
         productQuantityList.setModel(productQuantModel);
         
-        //DefaultComboBoxModel categoryModel = new DefaultComboBoxModel(); moved to static variable for reference
+        
         for (int i = 0; i < categoryList.size(); i++) {
             categoryModel.addElement(categoryList.get(i).getCategoryName());
         }
@@ -865,6 +906,7 @@ public class CNIT255Final extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldItemPrice;
     private javax.swing.JTextField jTextFieldItemStock;
     private javax.swing.JTextField jTextFieldUsername;
+    private javax.swing.JButton logOut;
     private javax.swing.JList<String> productQuantityList;
     private javax.swing.JButton purchaseCartButton;
     // End of variables declaration//GEN-END:variables

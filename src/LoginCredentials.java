@@ -44,11 +44,13 @@ public class LoginCredentials {
         this.username = username;
     }
     
+    /*
     //REMOVE AFTER TESTING
     public String getPass()
     {
         return pass;        //Returns a hashed password
     }
+    */
     
     public boolean checkPassword(String password) throws NoSuchAlgorithmException{
         String hashedPass = sha256Hash(password);

@@ -54,7 +54,7 @@ public class LoginPage extends javax.swing.JFrame {
         jLabel2.setText("Password:");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel3.setText("EA MASTER RACE");
+        jLabel3.setText("Online Store #3301");
 
         login.setText("Login");
         login.addActionListener(new java.awt.event.ActionListener() {
@@ -131,6 +131,7 @@ public class LoginPage extends javax.swing.JFrame {
                         //System.out.println("Correct Password!");
                         loginFail = false;
                         new CNIT255Final(cust).setVisible(true);
+                        this.setVisible(false);
                         break;
                     }
                 }
@@ -147,7 +148,6 @@ public class LoginPage extends javax.swing.JFrame {
         }
         
         
-        //new CNIT255Final(new CustomerAccount("David", "Tang", "4/14/19", (new Address("1342 Manicott Dr", "New Yourk", "New York", "USA", "23232")), (new ContactInfo("david@gmail.com", "4315581459")), (new LoginCredentials()), "22", "22")).setVisible(true);
         
     }//GEN-LAST:event_loginActionPerformed
 
