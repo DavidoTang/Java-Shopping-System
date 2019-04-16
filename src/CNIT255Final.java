@@ -5,6 +5,7 @@
 
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -126,6 +127,8 @@ public class CNIT255Final extends javax.swing.JFrame {
         productQuantityList = new javax.swing.JList<>();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        cboCategory = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -350,6 +353,10 @@ public class CNIT255Final extends javax.swing.JFrame {
 
         jLabel4.setText("Qnt:");
 
+        cboCategory.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jLabel1.setText("Category:");
+
         jMenu1.setText("File");
 
         jMenuItem1.setText("Exit");
@@ -404,7 +411,11 @@ public class CNIT255Final extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(cartTotalText, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cartName, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(cartName, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cboCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -424,7 +435,11 @@ public class CNIT255Final extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
                             .addComponent(cartTotalText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cboCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1))
+                        .addGap(14, 14, 14))
                     .addComponent(jScrollPane2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -726,7 +741,13 @@ public class CNIT255Final extends javax.swing.JFrame {
         }
         ProductList.setModel(productModel);
         productQuantityList.setModel(productQuantModel);
-
+        
+        DefaultComboBoxModel categoryModel = new DefaultComboBoxModel();
+        for (int i = 0; i < categoryList.size(); i++) {
+            categoryModel.addElement(categoryList.get(i).getCategoryName());
+        }
+        cboCategory.setModel(categoryModel);
+        
         // Initialize cart JList
         cartJList.setModel( cartModel );
 
@@ -740,10 +761,12 @@ public class CNIT255Final extends javax.swing.JFrame {
     private javax.swing.JList<String> cartJList;
     private javax.swing.JLabel cartName;
     private javax.swing.JTextField cartTotalText;
+    private javax.swing.JComboBox<String> cboCategory;
     private javax.swing.JButton clearCartButton;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonAddItem;
     private javax.swing.JDialog jDialogAdminPanel;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
