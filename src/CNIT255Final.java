@@ -14,6 +14,7 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.event.ListSelectionEvent;
+import java.awt.Toolkit;
 public class CNIT255Final extends javax.swing.JFrame {
 
 
@@ -55,7 +56,6 @@ public class CNIT255Final extends javax.swing.JFrame {
         currentCustomer = currentCust;
 
         //Lists all of our products in the jList.  jList's variable is called ProductList
-        //DefaultListModel productModel = new DefaultListModel();
         for (int i=0; i<itemStockList.size(); i++) {
             productModel.addElement(itemStockList.get(i).getName());
         }
@@ -83,7 +83,17 @@ public class CNIT255Final extends javax.swing.JFrame {
             @Override
             public void valueChanged(ListSelectionEvent e) {
                 if (!e.getValueIsAdjusting()) {
-                    txtDescription.setText(ProductList.getSelectedValue());
+                    
+                    String selectedName = ProductList.getSelectedValue();
+                    
+                    for( int i = 0; i < itemStockList.size(); i++ ){
+                            ItemStock test = itemStockList.get( i );
+                            String checkName = test.getName();
+                            if(checkName.equals(selectedName)) {
+                                txtDescription.setText("Price: " + test.getPrice() + "   :   " + test.getItemDescription());
+                            }
+                    }
+                    //txtDescription.setText(ProductList.getSelectedValue());
                 }
             }
         });
@@ -131,9 +141,9 @@ public class CNIT255Final extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jTextFieldItemDescription = new javax.swing.JTextField();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jListSupplier = new javax.swing.JList<String>();
+        jListSupplier = new javax.swing.JList<>();
         jScrollPane5 = new javax.swing.JScrollPane();
-        jListCategory = new javax.swing.JList<String>();
+        jListCategory = new javax.swing.JList<>();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jButtonAddItem = new javax.swing.JButton();
@@ -141,23 +151,24 @@ public class CNIT255Final extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jScrollPane1 = new javax.swing.JScrollPane();
-        ProductList = new javax.swing.JList<String>();
+        ProductList = new javax.swing.JList<>();
         addToCart = new javax.swing.JButton();
         cartName = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         cartTotalText = new javax.swing.JTextField();
         purchaseCartButton = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
-        cartJList = new javax.swing.JList<String>();
+        cartJList = new javax.swing.JList<>();
         clearCartButton = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        productQuantityList = new javax.swing.JList<String>();
+        productQuantityList = new javax.swing.JList<>();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        cboCategory = new javax.swing.JComboBox<String>();
+        cboCategory = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         logOut = new javax.swing.JButton();
         txtDescription = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -186,17 +197,17 @@ public class CNIT255Final extends javax.swing.JFrame {
 
         jLabel11.setText("Description");
 
-        jListSupplier.setModel(new javax.swing.AbstractListModel() {
+        jListSupplier.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
+            public String getElementAt(int i) { return strings[i]; }
         });
         jScrollPane4.setViewportView(jListSupplier);
 
-        jListCategory.setModel(new javax.swing.AbstractListModel() {
+        jListCategory.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
+            public String getElementAt(int i) { return strings[i]; }
         });
         jScrollPane5.setViewportView(jListCategory);
 
@@ -322,10 +333,10 @@ public class CNIT255Final extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
-        ProductList.setModel(new javax.swing.AbstractListModel() {
+        ProductList.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
+            public String getElementAt(int i) { return strings[i]; }
         });
         ProductList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         ProductList.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -358,10 +369,10 @@ public class CNIT255Final extends javax.swing.JFrame {
             }
         });
 
-        cartJList.setModel(new javax.swing.AbstractListModel() {
+        cartJList.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
+            public String getElementAt(int i) { return strings[i]; }
         });
         jScrollPane3.setViewportView(cartJList);
 
@@ -383,7 +394,7 @@ public class CNIT255Final extends javax.swing.JFrame {
 
         jLabel4.setText("Qnt:");
 
-        cboCategory.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cboCategory.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cboCategory.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cboCategoryActionPerformed(evt);
@@ -396,6 +407,19 @@ public class CNIT255Final extends javax.swing.JFrame {
         logOut.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 logOutActionPerformed(evt);
+            }
+        });
+
+        txtDescription.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDescriptionActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("History");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
             }
         });
 
@@ -443,7 +467,9 @@ public class CNIT255Final extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(cartName, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 176, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 103, Short.MAX_VALUE)
+                                .addComponent(jButton2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(logOut))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -474,7 +500,9 @@ public class CNIT255Final extends javax.swing.JFrame {
                             .addComponent(cartName)
                             .addComponent(jLabel3)
                             .addComponent(jLabel4)))
-                    .addComponent(logOut))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(logOut)
+                        .addComponent(jButton2)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -572,7 +600,7 @@ public class CNIT255Final extends javax.swing.JFrame {
 
     private void purchaseCartButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_purchaseCartButtonActionPerformed
         JDialog.setDefaultLookAndFeelDecorated( true );
-        int response = JOptionPane.showConfirmDialog( null, "Would you like to purchase the cart? Total is $" + cartTotal, "Purchase confirmation",
+        int response = JOptionPane.showConfirmDialog( null, "Would you like to purchase the cart? Total is $" + moneyFormat.format(cartTotal), "Purchase confirmation",
             JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE );
 
         if( response == JOptionPane.YES_OPTION )
@@ -591,6 +619,9 @@ public class CNIT255Final extends javax.swing.JFrame {
                 //int currentStock = itemStockList.get( (cartList.get(i).getIndex()) ).getStock();
                 //itemStockList.get( (cartList.get(i).getIndex()) ).setStock(currentStock - 1);
 
+                currentCustomer.getPurchaseHistory().add(cartList.get(i).getPrice() + "    :  " + cartList.get(i).getName());
+                
+                
                 cartList.remove(i);
             }
             //cartList = null;
@@ -601,6 +632,8 @@ public class CNIT255Final extends javax.swing.JFrame {
             cartTotal = 0;
 
             System.out.println("Cart Size at end: " + cartList.size());
+            JOptionPane.showMessageDialog(this, "Your Purchase Has Been Recorded.", "Purchase Sucessfull", JOptionPane.INFORMATION_MESSAGE);
+
         }
     }//GEN-LAST:event_purchaseCartButtonActionPerformed
 
@@ -773,6 +806,15 @@ public class CNIT255Final extends javax.swing.JFrame {
         
     }//GEN-LAST:event_logOutActionPerformed
 
+    private void txtDescriptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDescriptionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDescriptionActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        new customerHistory(currentCustomer).setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -788,26 +830,31 @@ public class CNIT255Final extends javax.swing.JFrame {
         supplierList.add(new Supplier("FastFit", "Ben Wagrez", (new SupplierContactInfo("fastfit@fastfit.org", "4042728293",
         "12233312", "benwagrez@fastfit.org", "7048217332", "www.fastfit.org")) ));
         supplierList.add(new Supplier("BongoCo", "Bongo Man", (new SupplierContactInfo("bongo@bongoco.com", "8085038020", "58726184", "bongoman@bongoco.com", "9498187115", "www.bongoco.com"))));
+        supplierList.add(new Supplier("FuckyFood", "Frank Funcky", (new SupplierContactInfo("funckyman@funk.com", "7329304711", "930482234", "funkInc@funk.com", "8289203182", "www.funkfood.com"))));
 
 
         //Initalize some Items
         itemStockList.add(new ItemStock(0,"Raspberry Pi", 35.00, supplierList.get(0), "N/A", "A tiny computer", categoryList.get(1), 2000));
-        itemStockList.add(new ItemStock(1,"Dell XPS 15", 999.99, supplierList.get(0), "N/A", "A tiny computer", categoryList.get(1) ,300));
+        itemStockList.add(new ItemStock(1,"Dell XPS 15", 999.99, supplierList.get(0), "N/A", "A Dell XPS laptop.  Brand new.  Great Value.", categoryList.get(1) ,300));
         itemStockList.add(new ItemStock(2,"Apple Macboook Pro - 13'", 999.99, supplierList.get(0), "N/A", "A tiny computer", categoryList.get(1) ,400));
         itemStockList.add(new ItemStock(3,"ASUS Zenbook S13", 1399.99, supplierList.get(0), "N/A", "A tiny computer", categoryList.get(1) ,600));
-        itemStockList.add(new ItemStock(4,"Alienware Area-51m", 2149.99, supplierList.get(0), "N/A", "A tiny computer", categoryList.get(1) ,300));
+        itemStockList.add(new ItemStock(4,"Alienware Area-51m", 2149.99, supplierList.get(0), "N/A", "-- Latest 13.9-inch laptop in the flagship ZenBook series has the world’s thinnest display bezels, NVIDIA GeForce MX150 discrete graphics and 8th Gen Intel Core i7 CPU --", categoryList.get(1) ,300));
         itemStockList.add(new ItemStock(5,"David's Sanityyyyy", 3301.00, supplierList.get(0), "4/16/19", "The quickly fading entity of David's Sanity", categoryList.get(2), 1));
-        itemStockList.add(new ItemStock(15, "Tom Clancy's Rainbow Six: Siege", 19.99, supplierList.get(1), "N/A", "", categoryList.get(3), 500));
-        itemStockList.add(new ItemStock(16, "Sid Meier’s Civilization VI", 59.99, supplierList.get(1), "N/A", "", categoryList.get(3), 700));
-        itemStockList.add(new ItemStock(17, "Rocket League", 19.99, supplierList.get(1), "N/A", "", categoryList.get(3), 400));
-        itemStockList.add(new ItemStock(18, "Far Cry 5", 59.99, supplierList.get(1), "N/A", "", categoryList.get(3), 700));
-        itemStockList.add(new ItemStock(19, "Grand Theft Auto V", 29.99, supplierList.get(1), "N/A", "", categoryList.get(3), 200));
-        itemStockList.add(new ItemStock(20, "Warframe", 0.00, supplierList.get(1), "N/A", "", categoryList.get(3), 1000));
-        itemStockList.add(new ItemStock(21, "Kingdon Come: Deliverance", 39.99, supplierList.get(1), "N/A", "", categoryList.get(3), 1500));
-        itemStockList.add(new ItemStock(22, "Counter-Strike: Global Offensive", 14.99, supplierList.get(1), "N/A", "", categoryList.get(3), 600));
-        itemStockList.add(new ItemStock(23, "Jurassic World: Evolution", 44.99, supplierList.get(1), "N/A", "", categoryList.get(3), 800));
-        itemStockList.add(new ItemStock(24, "PlayerUnknown’s Battlegrounds", 29.99, supplierList.get(1), "N/A", "", categoryList.get(3), 700));
-        
+        itemStockList.add(new ItemStock(6, "Tom Clancy's Rainbow Six: Siege", 19.99, supplierList.get(1), "N/A", "Master the art of destruction and gadgetry in Tom Clancy's Rainbow Six Siege.", categoryList.get(3), 500));
+        itemStockList.add(new ItemStock(7, "Sid Meier’s Civilization VI", 59.99, supplierList.get(1), "N/A", "Sid Meier's Civilization® VI. Civilization VI offers new ways to interact with your world, expand your empire across the map, advance your culture, and compete against history's greatest leaders!", categoryList.get(3), 700));
+        itemStockList.add(new ItemStock(8, "Rocket League", 19.99, supplierList.get(1), "N/A", "Soccer meets driving once again in the long-awaited, physics-based game!", categoryList.get(3), 400));
+        itemStockList.add(new ItemStock(9, "Far Cry 5", 59.99, supplierList.get(1), "N/A", "Far Cry 5 is a first-person shooter video game developed by Ubisoft Montreal and Ubisoft Toronto and published by Ubisoft for Microsoft Windows, PlayStation 4 and Xbox One.", categoryList.get(3), 700));
+        itemStockList.add(new ItemStock(10, "Grand Theft Auto V", 29.99, supplierList.get(1), "N/A", "Grand Theft Auto V is an action-adventure video game developed by Rockstar North and published by Rockstar Games.", categoryList.get(3), 200));
+        itemStockList.add(new ItemStock(11, "Warframe", 0.00, supplierList.get(1), "N/A", "Warframe is a free-to-play cooperative third-person shooter video game developed and published by Digital Extremes.", categoryList.get(3), 1000));
+        itemStockList.add(new ItemStock(12, "Kingdon Come: Deliverance", 39.99, supplierList.get(1), "N/A", "Kingdom Come: Deliverance is an action role-playing video game developed by Warhorse Studios and published by Deep Silver.", categoryList.get(3), 1500));
+        itemStockList.add(new ItemStock(13, "Counter-Strike: Global Offensive", 14.99, supplierList.get(1), "N/A", "Counter-Strike: Global Offensive is a multiplayer first-person shooter video game developed by Hidden Path Entertainment and Valve Corporation.", categoryList.get(3), 600));
+        itemStockList.add(new ItemStock(14, "Jurassic World: Evolution", 44.99, supplierList.get(1), "N/A", "Jurassic World Evolution is a business simulation video game developed and published by Frontier Developments.", categoryList.get(3), 800));
+        itemStockList.add(new ItemStock(15, "PlayerUnknown’s Battlegrounds", 29.99, supplierList.get(1), "N/A", "PlayerUnknown's Battlegrounds is an online multiplayer battle royale game developed and published by PUBG Corporation", categoryList.get(3), 700));
+        itemStockList.add(new ItemStock(16, "G-Fuel 6 Pack", 9.99, supplierList.get(2), "07/11/2021", "G Fuel, is a brand of caffeinated drink mix sold by Gamma Labs, based in West Babylon, New York. G Fuel has had sponsorship deals with PewDiePie, Dr DisRespect, and FaZe Clan.", categoryList.get(2), 7500));
+        itemStockList.add(new ItemStock(17, "Pizza Rolls", 4.99, supplierList.get(2), "09/21/2021", "Pizza Rolls are a frozen food product created by food industry entrepreneur Jeno Paulucci, who specialized in frozen Chinese food, in 1951.", categoryList.get(2), 1100));
+        itemStockList.add(new ItemStock(18, "Lagzania", 8.99, supplierList.get(2), "03/11/2022", "B**** Lagzania, yum", categoryList.get(2), 9300));
+        itemStockList.add(new ItemStock(19, "Turtle Beach Headphones", 105.00, supplierList.get(0), "N/A", "Hear the turtles with Turtle Beach's latest headphones!!", categoryList.get(1), 130));
+        itemStockList.add(new ItemStock(20, "Razar Death Adder", 55.00, supplierList.get(0), "N/A", "Do YOU want to frag like Jerma985?? Well now you can, with the RAZER DEATHADDER!", categoryList.get(1), 230));
         //itemStockList.add(e)
 
         /*      commented out, not needed? @ Dave
@@ -903,6 +950,7 @@ public class CNIT255Final extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cboCategory;
     private javax.swing.JButton clearCartButton;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButtonAddItem;
     private javax.swing.JDialog jDialogAdminPanel;
     private javax.swing.JLabel jLabel1;
