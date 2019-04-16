@@ -21,7 +21,13 @@ public class Supplier {
         this.companyCEO = companyCEO;
         this.supplierContact = supplierContact;
     }
-      
+    
+    
+    
+    
+    
+    
+    
     public String getCompanyName() {
         return companyName;
     }
