@@ -5,7 +5,9 @@
 
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
+import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JList;
@@ -22,7 +24,7 @@ public class CNIT255Final extends javax.swing.JFrame {
     private static ArrayList< ItemStock > itemStockList = new ArrayList<>();         //Holds the list of items we offer
     private static ArrayList<Supplier> supplierList = new ArrayList<>();        //Holds the list of suppliers
     private static ArrayList<Category> categoryList = new ArrayList<>();        //Holds the list of categories
-    private static ArrayList< Item > cartList = new ArrayList< Item >();        //Holds the list of items in the customer's cart
+    private static ArrayList<Item> cartList = new ArrayList< Item >();        //Holds the list of items in the customer's cart
 
     private static DefaultListModel cartModel = new DefaultListModel();
 
@@ -101,9 +103,9 @@ public class CNIT255Final extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jTextFieldItemDescription = new javax.swing.JTextField();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jListSupplier = new javax.swing.JList<>();
+        jListSupplier = new javax.swing.JList<String>();
         jScrollPane5 = new javax.swing.JScrollPane();
-        jListCategory = new javax.swing.JList<>();
+        jListCategory = new javax.swing.JList<String>();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jButtonAddItem = new javax.swing.JButton();
@@ -111,26 +113,27 @@ public class CNIT255Final extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jScrollPane1 = new javax.swing.JScrollPane();
-        ProductList = new javax.swing.JList<>();
+        ProductList = new javax.swing.JList<String>();
         addToCart = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         cartTotalText = new javax.swing.JTextField();
         purchaseCartButton = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
-        cartJList = new javax.swing.JList<>();
+        cartJList = new javax.swing.JList<String>();
         clearCartButton = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        productQuantityList = new javax.swing.JList<>();
+        productQuantityList = new javax.swing.JList<String>();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        cboCategory = new javax.swing.JComboBox();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItemAdminPanel = new javax.swing.JMenuItem();
 
         jDialogAdminPanel.setMinimumSize(new java.awt.Dimension(700, 475));
-        jDialogAdminPanel.setPreferredSize(new java.awt.Dimension(700, 475));
 
         jLabel5.setText("Username");
 
@@ -153,17 +156,17 @@ public class CNIT255Final extends javax.swing.JFrame {
 
         jLabel11.setText("Description");
 
-        jListSupplier.setModel(new javax.swing.AbstractListModel<String>() {
+        jListSupplier.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+            public Object getElementAt(int i) { return strings[i]; }
         });
         jScrollPane4.setViewportView(jListSupplier);
 
-        jListCategory.setModel(new javax.swing.AbstractListModel<String>() {
+        jListCategory.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+            public Object getElementAt(int i) { return strings[i]; }
         });
         jScrollPane5.setViewportView(jListCategory);
 
@@ -288,10 +291,10 @@ public class CNIT255Final extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        ProductList.setModel(new javax.swing.AbstractListModel<String>() {
+        ProductList.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+            public Object getElementAt(int i) { return strings[i]; }
         });
         ProductList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         ProductList.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -323,10 +326,10 @@ public class CNIT255Final extends javax.swing.JFrame {
             }
         });
 
-        cartJList.setModel(new javax.swing.AbstractListModel<String>() {
+        cartJList.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+            public Object getElementAt(int i) { return strings[i]; }
         });
         jScrollPane3.setViewportView(cartJList);
 
@@ -347,6 +350,10 @@ public class CNIT255Final extends javax.swing.JFrame {
         jLabel3.setText("Products:");
 
         jLabel4.setText("Qnt:");
+
+        jLabel14.setText("Category:");
+
+        cboCategory.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jMenu1.setText("File");
 
@@ -403,7 +410,11 @@ public class CNIT255Final extends javax.swing.JFrame {
                                 .addComponent(cartTotalText, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel14)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cboCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -416,14 +427,18 @@ public class CNIT255Final extends javax.swing.JFrame {
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
                             .addComponent(cartTotalText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel14)
+                            .addComponent(cboCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 22, Short.MAX_VALUE))
                     .addComponent(jScrollPane2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -659,16 +674,11 @@ public class CNIT255Final extends javax.swing.JFrame {
      */
     public static void main(String args[]) {
 
-
-        System.out.println("hi guys...");
-
-
-
-
         //Initalizing Categories
         categoryList.add(new Category("Electronics", "All things electronics"));
         categoryList.add(new Category("Food", "Items which can be consumed"));
         categoryList.add(new Category("Games", "The hottest games for all platforms"));
+        
         //Initalizing Suppliers
         supplierList.add(new Supplier("FastFit", "Ben Wagrez", (new SupplierContactInfo("fastfit@fastfit.org", "4042728293",
         "12233312", "benwagrez@fastfit.org", "7048217332", "www.fastfit.org")) ));
@@ -716,8 +726,15 @@ public class CNIT255Final extends javax.swing.JFrame {
             productModel.addElement(itemStockList.get(i).getName());
             productQuantModel.addElement(itemStockList.get(i).getStock());
         }
+
         ProductList.setModel(productModel);
         productQuantityList.setModel(productQuantModel);
+
+        DefaultComboBoxModel categoryModel = new DefaultComboBoxModel();
+        for (int i = 0; i < categoryList.size(); i++) {
+            categoryModel.addElement(categoryList.get(i).getCategoryName());
+        }
+        cboCategory.setModel(categoryModel);
 
         // Initialize cart JList
         cartJList.setModel( cartModel );
@@ -731,6 +748,7 @@ public class CNIT255Final extends javax.swing.JFrame {
     private javax.swing.JButton addToCart;
     private javax.swing.JList<String> cartJList;
     private javax.swing.JTextField cartTotalText;
+    private javax.swing.JComboBox cboCategory;
     private javax.swing.JButton clearCartButton;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonAddItem;
@@ -740,6 +758,7 @@ public class CNIT255Final extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
