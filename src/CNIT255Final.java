@@ -34,10 +34,15 @@ public class CNIT255Final extends javax.swing.JFrame {
     private static DefaultListModel productElectronics = new DefaultListModel(); // Electronic products only
     private static DefaultListModel productFood = new DefaultListModel(); // Food products only
     private static DefaultListModel productGames = new DefaultListModel(); // Game products only
+    
+    private static DefaultListModel productElectronicsQuant = new DefaultListModel();
+    private static DefaultListModel productFoodQuant = new DefaultListModel();
+    private static DefaultListModel productGamesQuant = new DefaultListModel();
 
     private static DecimalFormat moneyFormat = new DecimalFormat("#.##");
     
     private static double cartTotal = 0.0;
+    private static int comboCounter = 0;
     //private static
 
     /**
@@ -48,7 +53,7 @@ public class CNIT255Final extends javax.swing.JFrame {
         currentCustomer = currentCust;
 
         //Lists all of our products in the jList.  jList's variable is called ProductList
-        DefaultListModel productModel = new DefaultListModel();
+        //DefaultListModel productModel = new DefaultListModel();
         for (int i=0; i<itemStockList.size(); i++) {
             productModel.addElement(itemStockList.get(i).getName());
         }
@@ -63,12 +68,13 @@ public class CNIT255Final extends javax.swing.JFrame {
         }
         jListSupplier.setModel(supplierModel);
         
-        DefaultListModel categoryModel = new DefaultListModel();
+        //DefaultListModel categoryModel = new DefaultListModel();
+        /*
         for (int i=0; i<categoryList.size(); i++) {
             categoryModel.addElement(categoryList.get(i).getCategoryName());
             System.out.println(categoryList.get(i).getCategoryName());
         }
-        jListCategory.setModel(categoryModel);
+        jListCategory.setModel(categoryModel);*/
         
         
         //Cart Name
@@ -588,9 +594,9 @@ public class CNIT255Final extends javax.swing.JFrame {
 
     private void clearCartButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearCartButtonActionPerformed
         cartModel.removeAllElements();
-        cartTotalText.setText( "$0.0" );
+        cartTotalText.setText( "$0.00" );
         cartTotal = 0;
-
+        
         for( int i = cartList.size() - 1; i >= 0; i-- )
         {
 
@@ -601,11 +607,13 @@ public class CNIT255Final extends javax.swing.JFrame {
             //removing item from cart
             cartList.remove( i );
 
-            System.out.println("Cart size: " + cartList.size());
-            
-            cboCategory.setSelectedIndex( 0 );
-            refreshLists();
+            //System.out.println("Cart size: " + cartList.size());
         }
+        
+        ProductList.setModel( productModel );
+        productQuantityList.setModel( productQuantModel );
+        cboCategory.setSelectedItem( "" );
+        refreshLists();
     }//GEN-LAST:event_clearCartButtonActionPerformed
 
     private void jMenuItemAdminPanelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAdminPanelActionPerformed
@@ -668,6 +676,8 @@ public class CNIT255Final extends javax.swing.JFrame {
 
                 jTextFieldUsername.setText("");
                 jPasswordField.setText("");
+                
+        cboCategory.setModel(categoryModel);
             }
             else
             {
@@ -717,19 +727,23 @@ public class CNIT255Final extends javax.swing.JFrame {
         
         if( targetCategory.equals( "" ) ) // If the default empty category is selected, revert ProductList back to normal
         {
-            refreshLists();
+            ProductList.setModel( productModel );
+            productQuantityList.setModel( productQuantModel );
         }
         else if( targetCategory.equals( "Electronics" ) ) // Set the list to the one that contains electronics only
         {          
             ProductList.setModel( productElectronics );
+            productQuantityList.setModel( productElectronicsQuant );
         }
         else if( targetCategory.equals( "Food" ) ) // Repeat above except now it's the food only list
         {
             ProductList.setModel( productFood );
+            productQuantityList.setModel( productFoodQuant );
         }
         else if( targetCategory.equals( "Games" ) )// Repeat above except now it's the games only list
         {
             ProductList.setModel( productGames );
+            productQuantityList.setModel( productGamesQuant );
         }
     }//GEN-LAST:event_cboCategoryActionPerformed
 
@@ -784,7 +798,7 @@ public class CNIT255Final extends javax.swing.JFrame {
         itemStockList.add(new ItemStock(9, "Counter-Strike: Global Offensive", 14.99, supplierList.get(1), "N/A", "", categoryList.get(3), 600));
         itemStockList.add(new ItemStock(10, "Jurassic World: Evolution", 44.99, supplierList.get(1), "N/A", "", categoryList.get(3), 800));
         itemStockList.add(new ItemStock(11, "PlayerUnknown’s Battlegrounds", 29.99, supplierList.get(1), "N/A", "", categoryList.get(3), 700));
-
+        
         //itemStockList.add(e)
 
         /*      commented out, not needed? @ Dave
@@ -822,6 +836,9 @@ public class CNIT255Final extends javax.swing.JFrame {
         productElectronics.removeAllElements();
         productFood.removeAllElements();
         productGames.removeAllElements();
+        productElectronicsQuant.removeAllElements();
+        productFoodQuant.removeAllElements();
+        productGamesQuant.removeAllElements();
         //productModelCopy.removeAllElements();   
         
         //Refreshing itemlist and quantities based off of the values in 'itemStockList'
@@ -830,29 +847,40 @@ public class CNIT255Final extends javax.swing.JFrame {
             //productModelCopy.addElement(itemStockList.get(i).getName());
             productQuantModel.addElement(itemStockList.get(i).getStock());
             
-            System.out.println( "item stock category: " + itemStockList.get( i ).getCategoryName() );
+            //System.out.println( "item stock category: " + itemStockList.get( i ).getCategoryName() );
             
             if( itemStockList.get( i ).getCategoryName().equals( "Electronics" ) ) // If the stock number is 0 and therefore an electronic
             {
                 productElectronics.addElement( itemStockList.get( i ).getName() ); //Add to the electronics only list
+                productElectronicsQuant.addElement(itemStockList.get( i ).getStock() );
             }
             else if( itemStockList.get( i ).getCategoryName().equals( "Food" ) ) // If the stock number is 0 and therefore an electronic
             {
                 productFood.addElement( itemStockList.get( i ).getName() ); //Add to the electronics only list
+                productFoodQuant.addElement(itemStockList.get( i ).getStock() );
             }
             else if( itemStockList.get( i ).getCategoryName().equals( "Games" ) ) // If the stock number is 0 and therefore an electronic
             {
                 productGames.addElement( itemStockList.get( i ).getName() ); //Add to the electronics only list
+                productGamesQuant.addElement(itemStockList.get( i ).getStock() );
             }
         }
         ProductList.setModel(productModel);
         productQuantityList.setModel(productQuantModel);
         
+        //categoryModel.removeAllElements();
         
-        for (int i = 0; i < categoryList.size(); i++) {
+        if( comboCounter == 0 )
+        {
+            for (int i = 0; i < categoryList.size(); i++) {
+            System.out.println( "Adding " + categoryList.get( i ).getCategoryName() );
             categoryModel.addElement(categoryList.get(i).getCategoryName());
+            
+            comboCounter++;
         }
         cboCategory.setModel(categoryModel);
+        }
+        
         
         // Initialize cart JList
         cartJList.setModel( cartModel );
