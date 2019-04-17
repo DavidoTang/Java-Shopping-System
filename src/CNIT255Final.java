@@ -55,12 +55,6 @@ public class CNIT255Final extends javax.swing.JFrame implements AdminLogin {
     public CNIT255Final(CustomerAccount currentCust) {
         initComponents();
         currentCustomer = currentCust;
-
-        //Lists all of our products in the jList.  jList's variable is called ProductList
- //       for (int i=0; i<itemStockList.size(); i++) {
- //           productModel.addElement(itemStockList.get(i).getName());
- //       }
- //       ProductList.setModel(productModel);
         
         refreshLists();
         
@@ -572,8 +566,9 @@ public class CNIT255Final extends javax.swing.JFrame implements AdminLogin {
 
                 System.out.println("Found " + target);
 
-                // Change the cart list to reflect current cart changes
+                // Add to cart model
                 cartModel.addElement( test.getName() );
+                //Add to cart List
                 cartList.add( new Item(test.getIndex(), test.getName(), test.getPrice(), test.getTheSupplier(), //????~~
                         test.getExpirationDate(), test.getItemDescription(), test.getMyCategory() ));
 
@@ -650,8 +645,6 @@ public class CNIT255Final extends javax.swing.JFrame implements AdminLogin {
             cartList.remove( i );
         }
         
-        ProductList.setModel( productModel );
-        productQuantityList.setModel( productQuantModel );
         cboCategory.setSelectedItem( "" );
         refreshLists();
     }//GEN-LAST:event_clearCartButtonActionPerformed
