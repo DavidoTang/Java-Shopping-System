@@ -70,14 +70,14 @@ public class CNIT255Final extends javax.swing.JFrame {
         }
         jListSupplier.setModel(supplierModel);
         
-        //DefaultListModel categoryModel = new DefaultListModel();
-        /*
+        DefaultListModel categoryModel = new DefaultListModel();
+        
         for (int i=0; i<categoryList.size(); i++) {
             categoryModel.addElement(categoryList.get(i).getCategoryName());
             System.out.println(categoryList.get(i).getCategoryName());
         }
-        jListCategory.setModel(categoryModel);*/
-        
+        jListCategory.setModel(categoryModel); 
+       
         ProductList.addListSelectionListener(new ListSelectionListener() {
 
             @Override
@@ -150,6 +150,10 @@ public class CNIT255Final extends javax.swing.JFrame {
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        jTextArea2 = new javax.swing.JTextArea();
         jScrollPane1 = new javax.swing.JScrollPane();
         ProductList = new javax.swing.JList<>();
         addToCart = new javax.swing.JButton();
@@ -167,8 +171,9 @@ public class CNIT255Final extends javax.swing.JFrame {
         cboCategory = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         logOut = new javax.swing.JButton();
-        txtDescription = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        txtDescription = new javax.swing.JTextArea();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -330,6 +335,14 @@ public class CNIT255Final extends javax.swing.JFrame {
                 .addContainerGap(254, Short.MAX_VALUE))
         );
 
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane6.setViewportView(jTextArea1);
+
+        jTextArea2.setColumns(20);
+        jTextArea2.setRows(5);
+        jScrollPane7.setViewportView(jTextArea2);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
@@ -410,18 +423,18 @@ public class CNIT255Final extends javax.swing.JFrame {
             }
         });
 
-        txtDescription.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDescriptionActionPerformed(evt);
-            }
-        });
-
         jButton2.setText("History");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
+
+        txtDescription.setColumns(20);
+        txtDescription.setLineWrap(true);
+        txtDescription.setRows(5);
+        txtDescription.setWrapStyleWord(true);
+        jScrollPane8.setViewportView(txtDescription);
 
         jMenu1.setText("File");
 
@@ -467,7 +480,7 @@ public class CNIT255Final extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(cartName, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 103, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 116, Short.MAX_VALUE)
                                 .addComponent(jButton2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(logOut))
@@ -480,8 +493,8 @@ public class CNIT255Final extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(cboCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(txtDescription)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING)))
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane8, javax.swing.GroupLayout.Alignment.TRAILING)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(addToCart)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -506,25 +519,28 @@ public class CNIT255Final extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1)
+                            .addComponent(jScrollPane2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(purchaseCartButton)
+                            .addComponent(clearCartButton)
+                            .addComponent(addToCart))
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
                             .addComponent(cboCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtDescription, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
-                            .addComponent(cartTotalText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jScrollPane1)
-                    .addComponent(jScrollPane2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(purchaseCartButton)
-                    .addComponent(clearCartButton)
-                    .addComponent(addToCart))
-                .addContainerGap())
+                            .addComponent(cartTotalText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(40, 40, 40))))
         );
 
         pack();
@@ -818,10 +834,6 @@ public class CNIT255Final extends javax.swing.JFrame {
         
     }//GEN-LAST:event_logOutActionPerformed
 
-    private void txtDescriptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDescriptionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDescriptionActionPerformed
-
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         new customerHistory(currentCustomer).setVisible(true);
@@ -995,6 +1007,11 @@ public class CNIT255Final extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane8;
+    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextField jTextFieldItemDescription;
     private javax.swing.JTextField jTextFieldItemExpirationDate;
     private javax.swing.JTextField jTextFieldItemName;
@@ -1004,6 +1021,6 @@ public class CNIT255Final extends javax.swing.JFrame {
     private javax.swing.JButton logOut;
     private javax.swing.JList<String> productQuantityList;
     private javax.swing.JButton purchaseCartButton;
-    private javax.swing.JTextField txtDescription;
+    private javax.swing.JTextArea txtDescription;
     // End of variables declaration//GEN-END:variables
 }
