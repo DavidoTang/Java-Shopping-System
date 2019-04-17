@@ -854,7 +854,7 @@ public class CNIT255Final extends javax.swing.JFrame {
         supplierList.add(new Supplier("FastFit", "Ben Wagrez", (new SupplierContactInfo("fastfit@fastfit.org", "4042728293",
         "12233312", "benwagrez@fastfit.org", "7048217332", "www.fastfit.org")) ));
         supplierList.add(new Supplier("BongoCo", "Bongo Man", (new SupplierContactInfo("bongo@bongoco.com", "8085038020", "58726184", "bongoman@bongoco.com", "9498187115", "www.bongoco.com"))));
-        supplierList.add(new Supplier("FuckyFood", "Frank Funcky", (new SupplierContactInfo("funckyman@funk.com", "7329304711", "930482234", "funkInc@funk.com", "8289203182", "www.funkfood.com"))));
+        supplierList.add(new Supplier("FunkyFood", "Frank Funky", (new SupplierContactInfo("funkyman@funk.com", "7329304711", "930482234", "funkInc@funk.com", "8289203182", "www.funkfood.com"))));
 
 
         //Initalize some Items
