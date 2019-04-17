@@ -767,23 +767,27 @@ public class CNIT255Final extends javax.swing.JFrame {
 
     private void jButtonAddItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddItemActionPerformed
         JDialog.setDefaultLookAndFeelDecorated(true);
-        int response = JOptionPane.showConfirmDialog( null, "Are you sure you want to add this item?", "Admin Add Itemn",
+        int response = JOptionPane.showConfirmDialog( null, "Are you sure you want to add this item?", "Admin Add Item",
             JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE );
 
         if( response == JOptionPane.YES_OPTION )
         {
         
-        int supplierIndex = jListSupplier.getSelectedIndex();
-        int categoryIndex = jListCategory.getSelectedIndex();
+            int supplierIndex = jListSupplier.getSelectedIndex();
+            int categoryIndex = jListCategory.getSelectedIndex();
         
-        itemStockList.add(new ItemStock(itemStockList.size(), jTextFieldItemName.getText(), Double.parseDouble(jTextFieldItemPrice.getText()), supplierList.get(supplierIndex), jTextFieldItemExpirationDate.getText(), jTextFieldItemDescription.getText(), categoryList.get(categoryIndex), Integer.parseInt(jTextFieldItemStock.getText())));
+            itemStockList.add(new ItemStock(itemStockList.size(), jTextFieldItemName.getText(), Double.parseDouble(jTextFieldItemPrice.getText()), supplierList.get(supplierIndex), jTextFieldItemExpirationDate.getText(), jTextFieldItemDescription.getText(), categoryList.get(categoryIndex), Integer.parseInt(jTextFieldItemStock.getText())));
         
-        refreshLists();
+            refreshLists();
         
-        /*
-        System.out.println(itemStockList.size() - 1);
-        System.out.println(supplierIndex);
-        System.out.println(categoryIndex); */
+            jTextFieldItemName.setText("");
+            jTextFieldItemPrice.setText("");
+            jTextFieldItemStock.setText("");
+            jTextFieldItemExpirationDate.setText("");
+            jTextFieldItemDescription.setText("");
+            
+            jListSupplier.clearSelection();
+            jListCategory.clearSelection();
         }
     }//GEN-LAST:event_jButtonAddItemActionPerformed
 
