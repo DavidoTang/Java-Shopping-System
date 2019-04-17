@@ -57,10 +57,10 @@ public class CNIT255Final extends javax.swing.JFrame implements AdminLogin {
         currentCustomer = currentCust;
 
         //Lists all of our products in the jList.  jList's variable is called ProductList
-        for (int i=0; i<itemStockList.size(); i++) {
-            productModel.addElement(itemStockList.get(i).getName());
-        }
-        ProductList.setModel(productModel);
+ //       for (int i=0; i<itemStockList.size(); i++) {
+ //           productModel.addElement(itemStockList.get(i).getName());
+ //       }
+ //       ProductList.setModel(productModel);
         
         refreshLists();
         
@@ -572,19 +572,6 @@ public class CNIT255Final extends javax.swing.JFrame implements AdminLogin {
 
                 System.out.println("Found " + target);
 
-                //                (No longer Relivent, using cartList ArrayList)
-
-//                 currentCustomer.getShoppingcart().addItemToCart( (new ItemOrder(test.getIndex(), test.getName(), test.getPrice(), test.getTheSupplier(),
-//                                                                    test.getExpirationDate(), test.getItemDescription(), test.getMyCategory(),
-//                                                                    5)) );      //5 is the placeholder for ordernumber.
-
-                //System.out.println("Added: " + currentCustomer.getShoppingcart().getCart().get(0).getName());
-                /*
-                System.out.println("Items in Cart:");
-                for(ItemOrder a : currentCustomer.getShoppingcart().getCart()) {
-                    System.out.println(a.getName());
-                }*/
-
                 // Change the cart list to reflect current cart changes
                 cartModel.addElement( test.getName() );
                 cartList.add( new Item(test.getIndex(), test.getName(), test.getPrice(), test.getTheSupplier(), //????~~
@@ -602,7 +589,9 @@ public class CNIT255Final extends javax.swing.JFrame implements AdminLogin {
 
                 cartTotal = newCartPrice;
                 cboCategory.setSelectedIndex( 0 );
-                refreshLists();
+                
+                refreshLists();                               //Refresh Lists~~~~~~~~~~~~
+                
                 ProductList.setSelectedValue(target, rootPaneCheckingEnabled);
                 return;
             }
@@ -627,26 +616,13 @@ public class CNIT255Final extends javax.swing.JFrame implements AdminLogin {
 
         if( response == JOptionPane.YES_OPTION )
         {
-          System.out.println("Yes button clicked");
-          System.out.println("Cart size: " + cartList.size());
-
-
             int cartSize = cartList.size();
             for( int i = cartSize - 1; i >= 0; i-- )
             {
-                System.out.println("cartList.size(): " + cartList.size());
-                System.out.println("Loop #: " + i);
-
-                //removing 1 from the stock
-                //int currentStock = itemStockList.get( (cartList.get(i).getIndex()) ).getStock();
-                //itemStockList.get( (cartList.get(i).getIndex()) ).setStock(currentStock - 1);
-
                 currentCustomer.getPurchaseHistory().add(cartList.get(i).getPrice() + "    :  " + cartList.get(i).getName());
-                
                 
                 cartList.remove(i);
             }
-            //cartList = null;
             refreshLists();
 
             cartModel.removeAllElements();
@@ -666,15 +642,12 @@ public class CNIT255Final extends javax.swing.JFrame implements AdminLogin {
         
         for( int i = cartList.size() - 1; i >= 0; i-- )
         {
-
             //Adding items back into inventory
             int currentStock = itemStockList.get( (cartList.get(i).getIndex()) ).getStock();
             itemStockList.get( (cartList.get(i).getIndex()) ).setStock(currentStock + 1);
 
             //removing item from cart
             cartList.remove( i );
-
-            //System.out.println("Cart size: " + cartList.size());
         }
         
         ProductList.setModel( productModel );
@@ -906,18 +879,6 @@ public class CNIT255Final extends javax.swing.JFrame implements AdminLogin {
         itemStockList.add(new ItemStock(18, "Lagzania", 8.99, supplierList.get(2), "03/11/2022", "B**** Lagzania, yum", categoryList.get(2), 9300));
         itemStockList.add(new ItemStock(19, "Turtle Beach Headphones", 105.00, supplierList.get(0), "N/A", "Hear the turtles with Turtle Beach's latest headphones!!", categoryList.get(1), 130));
         itemStockList.add(new ItemStock(20, "Razar Death Adder", 55.00, supplierList.get(0), "N/A", "Do YOU want to frag like Jerma985?? Well now you can, with the RAZER DEATHADDER!", categoryList.get(1), 230));
-        //itemStockList.add(e)
-
-        /*      commented out, not needed? @ Dave
-        try {
-            LoginCredentials a = new LoginCredentials();
-            a.setPass("1234qazw");
-            System.out.println(a.getPass());
-       }
-        catch(NoSuchAlgorithmException e) {
-            
-        }
-        */
 
         
         /* Create and display the form */
@@ -930,9 +891,6 @@ public class CNIT255Final extends javax.swing.JFrame implements AdminLogin {
     }
 
     public void refreshLists() {
-
-        //DefaultListModel productModel = new DefaultListModel(); Moved to static for reference
-        //DefaultListModel productQuantModel = new DefaultListModel();
         
         productModel.removeAllElements();       // Not including these lines will double the list
         productQuantModel.removeAllElements();  // every time refreshLists() is used.
@@ -946,12 +904,10 @@ public class CNIT255Final extends javax.swing.JFrame implements AdminLogin {
         
         //Refreshing itemlist and quantities based off of the values in 'itemStockList'
         for (int i=0; i<itemStockList.size(); i++) {
+            //Resetting the ProductList and Quantity Values
             productModel.addElement(itemStockList.get(i).getName());
-            //productModelCopy.addElement(itemStockList.get(i).getName());
             productQuantModel.addElement(itemStockList.get(i).getStock());
-            
-            //System.out.println( "item stock category: " + itemStockList.get( i ).getCategoryName() );
-            
+                        
             if( itemStockList.get( i ).getCategoryName().equals( "Electronics" ) ) // If the stock number is 0 and therefore an electronic
             {
                 productElectronics.addElement( itemStockList.get( i ).getName() ); //Add to the electronics only list
@@ -968,28 +924,23 @@ public class CNIT255Final extends javax.swing.JFrame implements AdminLogin {
                 productGamesQuant.addElement(itemStockList.get( i ).getStock() );
             }
         }
-        ProductList.setModel(productModel);
-        productQuantityList.setModel(productQuantModel);
-        
-        //categoryModel.removeAllElements();
-        
+                
         if( comboCounter == 0 )
         {
             for (int i = 0; i < categoryList.size(); i++) {
-            //System.out.println( "Adding " + categoryList.get( i ).getCategoryName() );
             
-            //if( categoryModel.getElementAt( 1 ).getCategoryName.equals( "Electronics" ) )
             categoryModel.addElement(categoryList.get(i).getCategoryName());
             
             comboCounter++;
-        }
+            }
         cboCategory.setModel(categoryModel);
         }
         
         
-        // Initialize cart JList
+        // Resetting the Lists
         cartJList.setModel( cartModel );
-
+        ProductList.setModel(productModel);
+        productQuantityList.setModel(productQuantModel);
     }
 
 

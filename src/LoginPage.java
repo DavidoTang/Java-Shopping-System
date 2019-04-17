@@ -22,8 +22,8 @@ public class LoginPage extends javax.swing.JFrame {
         
         //Initializing customer list
         try{
-            customerList.add(new CustomerAccount("Dominic", "Kao", "4/14/19", (new Address("1342 Manicott Dr", "New Yourk", "New York", "USA", "23232")), (new ContactInfo("kaod@purdue.edu", "4315581459")), (new LoginCredentials( "kaoLovesEA", "1f1100469ebcb41de6f7e836d3112d7bcf4a37ca5ad76fd8daeb18b172817675")), "4/15/19", "8/20/1990"));
-            customerList.add(new CustomerAccount("David", "Tang", "4/14/19", (new Address("205 Constitution Drive", "Hendersonville", "NC", "USA", "28792")), (new ContactInfo("tang397@purdue.edu", "888333762")), (new LoginCredentials( "NoodlesInSpace", "985e166be2e9d30c128137bda83a8007e7b1650f165569dcc7b8714668021ff8")), "4/15/19", "4/20/1998"));
+            customerList.add(new CustomerAccount("Dominic", "Kao", "4/14/19", (new Address("1342 Manicott Dr", "New Yourk", "New York", "USA", "23232")), (new ContactInfo("kaod@purdue.edu", "4315581459")), (new LoginCredentials( "kaoLovesEA",              "1f1100469ebcb41de6f7e836d3112d7bcf4a37ca5ad76fd8daeb18b172817675")), "4/15/19", "8/20/1990"));
+            customerList.add(new CustomerAccount("David", "Tang", "4/14/19", (new Address("205 Constitution Drive", "Hendersonville", "NC", "USA", "28792")), (new ContactInfo("tang397@purdue.edu", "888333762")), (new LoginCredentials( "NoodlesInSpace",    "985e166be2e9d30c128137bda83a8007e7b1650f165569dcc7b8714668021ff8")), "4/15/19", "4/20/1998"));
         }
         catch(NoSuchAlgorithmException e) {
             
@@ -63,6 +63,12 @@ public class LoginPage extends javax.swing.JFrame {
         login.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 loginActionPerformed(evt);
+            }
+        });
+
+        password.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                passwordActionPerformed(evt);
             }
         });
 
@@ -134,12 +140,12 @@ public class LoginPage extends javax.swing.JFrame {
             boolean loginFail = true;
             String username = userName.getText();
             String pass = password.getText();
+            //Cycles through customerList
             for (CustomerAccount cust: customerList) {
+                //Usernames
                 if (username.equals(cust.getLoginCreds().getUsername())) {
-                    //System.out.println("Correct username!");
-                    
+                    //Check if pass matches
                     if(cust.getLoginCreds().checkPassword(pass)){
-                        //System.out.println("Correct Password!");
                         loginFail = false;
                         new CNIT255Final(cust).setVisible(true);
                         this.setVisible(false);
@@ -165,6 +171,10 @@ public class LoginPage extends javax.swing.JFrame {
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         System.exit(0);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_passwordActionPerformed
 
     /**
      * @param args the command line arguments
