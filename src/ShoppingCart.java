@@ -18,7 +18,17 @@ public class ShoppingCart {
         //this.cart = null;
     }
 
-    
+    public void calculateCost()
+    {
+        double newPrice = 0.0;
+        
+        for( ItemOrder item : cart )
+        {
+            newPrice += item.getPrice();
+        }
+        
+        totalCartPrice = newPrice;
+    }
     
     
     /*
