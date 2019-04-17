@@ -10,12 +10,12 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
-import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.BoundedRangeModel;
-import java.awt.Toolkit;
+import javax.swing.JPasswordField;
+
 public class CNIT255Final extends javax.swing.JFrame {
 
 
