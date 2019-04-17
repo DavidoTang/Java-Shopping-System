@@ -115,6 +115,7 @@ public class CNIT255Final extends javax.swing.JFrame {
             System.out.println("Something went wrong, see: " + e);
         }
         
+        //Making both scroll panes scroll at the same time
         BoundedRangeModel model = jScrollPane1.getVerticalScrollBar().getModel();
         jScrollPane2.getVerticalScrollBar().setModel(model);
         
@@ -793,7 +794,7 @@ public class CNIT255Final extends javax.swing.JFrame {
         {
             String targetCategory = cboCategory.getSelectedItem().toString();
             
-            if( targetCategory.equals( "All Items" ) ) // If the default empty category is selected, revert ProductList back to normal
+            if( targetCategory.equals( "All Items" ) ) // If the default "All Items" category is selected, revert ProductList back to normal
             {
                 ProductList.setModel( productModel );
                 productQuantityList.setModel( productQuantModel );
