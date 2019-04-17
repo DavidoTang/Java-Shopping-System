@@ -630,7 +630,7 @@ public class CNIT255Final extends javax.swing.JFrame implements AdminLogin {
             cartTotal = 0;
 
             System.out.println("Cart Size at end: " + cartList.size());
-            JOptionPane.showMessageDialog(this, "Your Purchase Has Been Recorded.", "Purchase Sucessfull", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Your Purchase Has Been Recorded.", "Purchase Successful", JOptionPane.INFORMATION_MESSAGE);
 
         }
     }//GEN-LAST:event_purchaseCartButtonActionPerformed
@@ -714,7 +714,6 @@ public class CNIT255Final extends javax.swing.JFrame implements AdminLogin {
         
         if(checkCredentials(adminProfile, loginCheck))
         {                                                                                   //(checkPassword(loginCheck.getPass()))
-            System.out.println("bruh moment");
             jLabel7.setVisible(true);
             jLabel8.setVisible(true);
             jLabel9.setVisible(true);
