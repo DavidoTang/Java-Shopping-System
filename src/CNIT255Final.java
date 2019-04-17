@@ -16,7 +16,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.BoundedRangeModel;
 import javax.swing.JPasswordField;
 
-public class CNIT255Final extends javax.swing.JFrame {
+public class CNIT255Final extends javax.swing.JFrame implements AdminLogin {
 
 
 
@@ -705,7 +705,25 @@ public class CNIT255Final extends javax.swing.JFrame {
         
         jButtonAddItem.setVisible(false);
     }//GEN-LAST:event_jMenuItemAdminPanelActionPerformed
-
+    
+    @Override
+    public boolean checkCredentials(AdminAccount a, LoginCredentials l)
+    {
+        try
+        {
+            if((l.getUsername().equals(a.getLoginCreds().getUsername())) && (a.getLoginCreds().checkPassword(jPasswordField.getText())))
+            {
+                return true;
+            }
+        }
+        catch (NoSuchAlgorithmException e)
+        {
+            System.out.println("Something went wrong, see: " + e);
+        }
+        return false;
+    }
+    
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         LoginCredentials loginCheck = null; //Initialzed with null so Java doesnt freak out
         
@@ -718,8 +736,10 @@ public class CNIT255Final extends javax.swing.JFrame {
             System.out.println("Something went wrong, see: " + e);
         }
         
-        try {
-            if((loginCheck.getUsername().equals(adminProfile.getLoginCreds().getUsername())) && (adminProfile.getLoginCreds().checkPassword(jPasswordField.getText())))
+        //(loginCheck.getUsername().equals(adminProfile.getLoginCreds().getUsername())) && (adminProfile.getLoginCreds().checkPassword(jPasswordField.getText()))
+        
+        
+            if(checkCredentials(adminProfile, loginCheck))
             {                                                                                   //(checkPassword(loginCheck.getPass()))
                 System.out.println("bruh moment");
                 jLabel7.setVisible(true);
@@ -752,10 +772,8 @@ public class CNIT255Final extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(about, "Incorrect login credentials.\nPlease try again.");
                 jPasswordField.setText("");
             } 
-        }
-        catch (NoSuchAlgorithmException e) {
-            
-        }
+        
+        
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
