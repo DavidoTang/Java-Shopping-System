@@ -788,7 +788,7 @@ public class CNIT255Final extends javax.swing.JFrame {
         {
             String targetCategory = cboCategory.getSelectedItem().toString();
             
-            if( targetCategory.equals( "" ) ) // If the default empty category is selected, revert ProductList back to normal
+            if( targetCategory.equals( "All Items" ) ) // If the default empty category is selected, revert ProductList back to normal
             {
                 ProductList.setModel( productModel );
                 productQuantityList.setModel( productQuantModel );
