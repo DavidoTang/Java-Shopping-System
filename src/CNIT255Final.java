@@ -739,42 +739,41 @@ public class CNIT255Final extends javax.swing.JFrame implements AdminLogin {
         //(loginCheck.getUsername().equals(adminProfile.getLoginCreds().getUsername())) && (adminProfile.getLoginCreds().checkPassword(jPasswordField.getText()))
         
         
-            if(checkCredentials(adminProfile, loginCheck))
-            {                                                                                   //(checkPassword(loginCheck.getPass()))
-                System.out.println("bruh moment");
-                jLabel7.setVisible(true);
-                jLabel8.setVisible(true);
-                jLabel9.setVisible(true);
-                jLabel10.setVisible(true);
-                jLabel11.setVisible(true);
-                jLabel12.setVisible(true);
-                jLabel13.setVisible(true);
+        if(checkCredentials(adminProfile, loginCheck))
+        {                                                                                   //(checkPassword(loginCheck.getPass()))
+            System.out.println("bruh moment");
+            jLabel7.setVisible(true);
+            jLabel8.setVisible(true);
+            jLabel9.setVisible(true);
+            jLabel10.setVisible(true);
+            jLabel11.setVisible(true);
+            jLabel12.setVisible(true);
+            jLabel13.setVisible(true);
 
-                jTextFieldItemName.setVisible(true);
-                jTextFieldItemPrice.setVisible(true);
-                jTextFieldItemStock.setVisible(true);
-                jTextFieldItemExpirationDate.setVisible(true);
-                jTextFieldItemDescription.setVisible(true);
+            jTextFieldItemName.setVisible(true);
+            jTextFieldItemPrice.setVisible(true);
+            jTextFieldItemStock.setVisible(true);
+            jTextFieldItemExpirationDate.setVisible(true);
+            jTextFieldItemDescription.setVisible(true);
 
-                jListSupplier.setVisible(true);
-                jListCategory.setVisible(true);
+            jListSupplier.setVisible(true);
+            jListCategory.setVisible(true);
 
-                jButtonAddItem.setVisible(true);
+            jButtonAddItem.setVisible(true);
 
-                jTextFieldUsername.setText("");
-                jPasswordField.setText("");
+            jTextFieldUsername.setText("");
+            jPasswordField.setText("");
                 
-                cboCategory.setModel(categoryModel);
-            }
-            else
-            {
-                JFrame about = new JFrame();
-                JOptionPane.showMessageDialog(about, "Incorrect login credentials.\nPlease try again.");
-                jPasswordField.setText("");
-            } 
+            cboCategory.setModel(categoryModel);
+        }
+        else
+        {
+            JFrame about = new JFrame();
+            JOptionPane.showMessageDialog(about, "Incorrect login credentials.\nPlease try again.");
+            jPasswordField.setText("");
+        } 
         
-        
-        
+            
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
