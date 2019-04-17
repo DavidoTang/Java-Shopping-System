@@ -14,6 +14,7 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.event.ListSelectionEvent;
+import javax.swing.BoundedRangeModel;
 import java.awt.Toolkit;
 public class CNIT255Final extends javax.swing.JFrame {
 
@@ -113,6 +114,10 @@ public class CNIT255Final extends javax.swing.JFrame {
         {
             System.out.println("Something went wrong, see: " + e);
         }
+        
+        BoundedRangeModel model = jScrollPane1.getVerticalScrollBar().getModel();
+        jScrollPane2.getVerticalScrollBar().setModel(model);
+        
     }
 
     /**
