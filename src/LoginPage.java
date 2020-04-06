@@ -23,7 +23,7 @@ public class LoginPage extends javax.swing.JFrame {
         //Initializing customer list
         try{
             customerList.add(new CustomerAccount("Dominic", "Kao", "4/14/19", (new Address("1342 Manicott Dr", "New Yourk", "New York", "USA", "23232")), (new ContactInfo("kaod@purdue.edu", "4315581459")), (new LoginCredentials( "kaoLovesEA",              "1f1100469ebcb41de6f7e836d3112d7bcf4a37ca5ad76fd8daeb18b172817675")), "4/15/19", "8/20/1990"));
-            customerList.add(new CustomerAccount("David", "Tang", "4/14/19", (new Address("205 Constitution Drive", "Hendersonville", "NC", "USA", "28792")), (new ContactInfo("tang397@purdue.edu", "888333762")), (new LoginCredentials( "NoodlesInSpace",    "985e166be2e9d30c128137bda83a8007e7b1650f165569dcc7b8714668021ff8")), "4/15/19", "4/20/1998"));
+            customerList.add(new CustomerAccount("David", "Tang", "4/14/19", (new Address("205 Constitution Drive", "Hendersonville", "NC", "USA", "28792")), (new ContactInfo("tang397@purdue.edu", "888333762")), (new LoginCredentials( "NoodlesInSpace",    "c54d67589ba2198cc323146e91532a15418ae6e53362fc4c31f4565faaedd7e4")), "4/15/19", "4/20/1998"));
         }
         catch(NoSuchAlgorithmException e) {
             
