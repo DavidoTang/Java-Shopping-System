@@ -10,3 +10,4 @@ Admin Account:
 Username:admin		Pass:1234qazw
 *Passwords are hashed with sha256
 
+The main function is located in loginPage.java
